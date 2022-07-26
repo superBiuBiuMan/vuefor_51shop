@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../assets/css/basic.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/admin.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/hmstyle.css" />
+		<style lang="scss" scoped>
+			#box {
+				position: relative;
+				width: 100%;
+				height: 455px;
+				background: #fff;
+				border-radius: 5px;
+			}
+			
+			#box .list {
+				position: relative;
+				height: 455px;
+			}
+			
+			@media only screen and (min-width: 1450px) {
+				#box .list li {
+					width: 50%;
+					height: 50%;
+					margin: auto;
+					margin-top: 0px;
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					right: 0;
+				}
+				#box .count {
+					position: absolute;
+					left: 900px;
+					bottom: 5px;
+				}
+			}
+			
+			@media screen and (min-width: 800px) and (max-width: 1450px) {
+				#box .list li {
+					width: 50%;
+					height: 50%;
+					margin: auto;
+					margin-top: 0px;
+					position: absolute;
+					top: 0;
+					left: -100px;
+					bottom: 0;
+					right: 0;
+				}
+				#box .list li img {
+					width: 120%;
+				}
+				#box .count {
+					position: absolute;
+					left: 700px;
+					bottom: 5px;
+				}
+			}
+			
+			@media screen and (max-width: 400px) {
+				#box {
+					display: none;
+				}
+			}
+			
+			#box .list li.current {
+				opacity: 1;
+			}
+			
+			#box .count li {
+				color: #fff;
+				float: left;
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+				text-align: center;
+				cursor: pointer;
+				margin-right: 5px;
+				overflow: hidden;
+				background: #6D6B6A;
+				opacity: 0.7;
+				border-radius: 20px;
+			}
+			
+			#box .count li.current {
+				color: #fff;
+				opacity: 0.7;
+				font-weight: 700;
+				background: #f60;
+				transition: all .6s ease;
+			}
+			/* 设置过渡属性 */
+			
+			.fade-enter-active,
+			.fade-leave-active {
+				transition: all 1s;
+			}
+			
+			.fade-enter,
+			.fade-leave-to {
+				opacity: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<div da class="hmtop">
+				<div da class="mr-container header">
+					<ul da class="message-l">
+						<div da class="topMessage">
+							<div da class="menu-hd"><span da style="color: green;">mr，欢迎您 <a da style="color: red;">退出登录</a></span>
+								<a da target="_top" style="color: red; margin-left: 20px;">免费注册</a>
+							</div>
+						</div>
+					</ul>
+					<ul da class="message-r">
+						<div da class="topMessage home">
+							<div da class="menu-hd">
+								<a da target="_top" class="h" style="color: red;">商城首页</a>
+							</div>
+						</div>
+						<div da class="topMessage my-shangcheng">
+							<div da class="menu-hd MyShangcheng">
+								<a da href="#" target="_top"><i da class="mr-icon-user mr-icon-fw"></i>个人中心</a>
+							</div>
+						</div>
+						<div da class="topMessage mini-cart">
+							<div da class="menu-hd">
+								<a da id="mc-menu-hd" target="_top"><i da class="mr-icon-shopping-cart  mr-icon-fw"></i><span da style="color: red;">购物车</span><strong da id="J_MiniCartNum" class="h">2</strong></a>
+							</div>
+						</div>
+						<div da class="topMessage favorite">
+							<div da class="menu-hd">
+								<a da href="#" target="_top"><i da class="mr-icon-heart mr-icon-fw"></i><span da>收藏夹</span></a>
+							</div>
+						</div>
+					</ul>
+				</div>
+				<div da class="nav white">
+					<div da class="logo">
+						<a da><img da src="../../assets/images/logo.png"></a>
+					</div>
+					<div da class="logoBig">
+						<li da><img da src="../../assets/images/logobig.png"></li>
+					</div>
+					<div da class="search-bar pr">
+						<form da><input da id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off"><input da id="ai-topsearch" value="搜索" index="1" type="submit" class="submit mr-btn"></form>
+					</div>
+				</div>
+				<div da class="clear"></div>
+			</div>
+			<div>
+				<div class="shopNav">
+					<div class="slideall">
+						<div>
+							<div class="long-title"><span class="all-goods">全部分类</span></div>
+							<div class="nav-cont">
+								<ul>
+									<li class="index">
+										<a href="javascript:void(0)">首页</a>
+									</li>
+									<li class="qc">
+										<a href="javascript:void(0)">闪购</a>
+									</li>
+									<li class="qc">
+										<a href="javascript:void(0)">生鲜</a>
+									</li>
+									<li class="qc">
+										<a href="javascript:void(0)">团购</a>
+									</li>
+									<li class="qc last">
+										<a href="javascript:void(0)">全球购</a>
+									</li>
+								</ul>
+								<div class="nav-extra"><i class="mr-icon-user-secret mr-icon-md nav-user"></i><b></b>我的福利 <i class="mr-icon-angle-right" style="padding-left: 10px;"></i></div>
+							</div>
+						</div>
+						<div>
+							<div id="nav" class="navfull">
+								<div class="area clearfix">
+									<div id="guide_2" class="category-content">
+										<div class="category">
+											<ul id="js_climit_li" class="category-list">
+												<li class="appliance js_toggle relative">
+													<div class="category-info">
+														<h3 class="category-name b-category-name"><i><img src="../../assets/images/cake.png"></i><a title="家用电器" class="ml-22">家用电器</a></h3><em>&gt;</em></div>
+													<div class="menu-item menu-in top">
+														<div class="area-in">
+															<div class="area-bg">
+																<div class="menu-srot">
+																	<div class="sort-side">
+																		<dl class="dl-sort"><dt><span>生活电器</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>取暖电器</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>吸尘器</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>净化器</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>扫地机器人</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>加湿器</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>熨斗</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>电风扇</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>冷风扇</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>插座</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>厨房小电</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>电饭煲</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>微波炉</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>电烤箱</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>电磁炉</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>电压力锅</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>豆浆机</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>咖啡机</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>面包机</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>榨汁机</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>实力商家</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>海尔</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>三星</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>飞利浦</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>九阳</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>海信</span></a>
+																			</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><b class="arrow"></b></li>
+												<li class="appliance js_toggle relative">
+													<div class="category-info">
+														<h3 class="category-name b-category-name"><i><img src="../../assets/images/cookies.png"></i><a title="手机/数码" class="ml-22">手机/数码</a></h3><em>&gt;</em></div>
+													<div class="menu-item menu-in top">
+														<div class="area-in">
+															<div class="area-bg">
+																<div class="menu-srot">
+																	<div class="sort-side">
+																		<dl class="dl-sort"><dt><span>手机</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>手机</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>对讲机</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>以旧换新</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>手机维修</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>数码配件</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>存储卡</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>三脚架/云台</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>相机包</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>滤镜</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>闪光灯</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>相机清洗</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>机身附件</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>镜头附件</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>读卡器</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>智能设备</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>智能手环</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>智能手表</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>智能眼镜</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>智能机器人</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>运动跟踪器</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>智能家居</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>体感机</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>无人机</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>其他配件</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>实力商家</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>小米</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>SONY</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>Nikon</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>华为</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>魅族手机</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>三星</span></a>
+																			</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><b class="arrow"></b></li>
+												<li class="appliance js_toggle relative">
+													<div class="category-info">
+														<h3 class="category-name b-category-name"><i><img src="../../assets/images/meat.png"></i><a title="家居/家具" class="ml-22">家居/家具</a></h3><em>&gt;</em></div>
+													<div class="menu-item menu-in top">
+														<div class="area-in">
+															<div class="area-bg">
+																<div class="menu-srot">
+																	<div class="sort-side">
+																		<dl class="dl-sort"><dt><span>家具</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>卧室家具</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>客厅家具</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>餐厅家具</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>书房家具</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>儿童家具</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>灯具</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>台灯</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>吸顶灯</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>LED灯</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>节能灯</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>落地灯</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>厨具</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>烹饪厨具</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>刀剪菜饭</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>水具酒具</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>茶具</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>咖啡具</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>实力商家</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>花颜巧语</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>糖衣小屋</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>卡拉迪克</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>暖春童话</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>华盛童装批发行</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>奈仕华童装旗舰店</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>斑蒂尼BONDYNI</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>猫儿朵朵</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>童衣阁</span></a>
+																			</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><b class="arrow"></b></li>
+												<li class="appliance js_toggle relative">
+													<div class="category-info">
+														<h3 class="category-name b-category-name"><i><img src="../../assets/images/bamboo.png"></i><a title="素食/卤味" class="ml-22">素食/卤味</a></h3><em>&gt;</em></div>
+													<div class="menu-item menu-in top">
+														<div class="area-in">
+															<div class="area-bg">
+																<div class="menu-srot">
+																	<div class="sort-side">
+																		<dl class="dl-sort"><dt><span>素食</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>蒸蛋糕</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>脱水蛋糕</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>瑞士卷</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>铜锣烧</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>软面包</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>马卡龙</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>千层饼</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>甜甜圈</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>蒸三明治</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>卤味</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>干笋</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>鸭脖</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>猪手</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>鸭头</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>猪耳朵</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>实力商家</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>达利食品</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>米琪</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>迪莉娅</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>艾菲克</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>老昌</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>阿满</span></a>
+																			</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><b class="arrow"></b></li>
+												<li class="appliance js_toggle relative">
+													<div class="category-info">
+														<h3 class="category-name b-category-name"><i><img src="../../assets/images/nut.png"></i><a title="坚果/炒货" class="ml-22">坚果/炒货</a></h3><em>&gt;</em></div>
+													<div class="menu-item menu-in top">
+														<div class="area-in">
+															<div class="area-bg">
+																<div class="menu-srot">
+																	<div class="sort-side">
+																		<dl class="dl-sort"><dt><span>坚果</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>核桃</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>杏仁</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>开心果</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>榛子</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>松子</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>腰果</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>炒货</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>锅巴</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>花生</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>瓜子</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>栗子</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>玉米</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>实力商家</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>老奶奶</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>恰恰</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>酒鬼</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>真心</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>温州城五区</span></a>
+																			</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><b class="arrow"></b></li>
+												<li class="appliance js_toggle relative">
+													<div class="category-info">
+														<h3 class="category-name b-category-name"><i><img src="../../assets/images/candy.png"></i><a title="糖果/蜜饯" class="ml-22">糖果/蜜饯</a></h3><em>&gt;</em></div>
+													<div class="menu-item menu-in top">
+														<div class="area-in">
+															<div class="area-bg">
+																<div class="menu-srot">
+																	<div class="sort-side">
+																		<dl class="dl-sort"><dt><span>糖果</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>花生糖</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>软糖</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>奶糖</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>水果糖</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>酥糖</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>牛轧糖</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>蜜饯</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>葡萄干</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>地瓜干</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>蜜枣</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>无花果</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>柿子饼</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>猕猴桃干</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>糖樱桃</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>实力商家</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>不老林</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>徐福记</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>马大姐</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>金丝猴</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>小白兔</span></a>
+																			</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><b class="arrow"></b></li>
+												<li class="appliance js_toggle relative">
+													<div class="category-info">
+														<h3 class="category-name b-category-name"><i><img src="../../assets/images/chocolate.png"></i><a title="巧克力" class="ml-22">巧克力</a></h3><em>&gt;</em></div>
+													<div class="menu-item menu-in top">
+														<div class="area-in">
+															<div class="area-bg">
+																<div class="menu-srot">
+																	<div class="sort-side">
+																		<dl class="dl-sort"><dt><span>巧克力</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>德芙</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>费列罗</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>金帝</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>好时</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>金莎</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>明治</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>果冻</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>喜之郎</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>蜡笔小新</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>亲亲果冻</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>金娃果冻</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>徐福记</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>旺旺食品</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>金丝猴</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>实力商家</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>妙久食品</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>达达食品</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>果真小店</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>锦食阁小店</span></a>
+																			</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><b class="arrow"></b></li>
+												<li class="appliance js_toggle relative">
+													<div class="category-info">
+														<h3 class="category-name b-category-name"><i><img src="../../assets/images/fish.png"></i><a title="海鲜/肉类" class="ml-22">海鲜/肉类</a></h3><em>&gt;</em></div>
+													<div class="menu-item menu-in top">
+														<div class="area-in">
+															<div class="area-bg">
+																<div class="menu-srot">
+																	<div class="sort-side">
+																		<dl class="dl-sort"><dt><span>海鲜</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>鱼类</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>虾类</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>蟹类</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>贝类</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>海参</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>三文鱼</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>海鲜加工品</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>肉类</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>猪肉</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>牛肉</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>羊肉</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>鸡肉</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>鸭肉</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>冷鲜肉</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>特色肉类</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>实力商家</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>双汇</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>华正</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>高金</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>皓月</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>海天下</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>美佳佳</span></a>
+																			</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><b class="arrow"></b></li>
+												<li class="appliance js_toggle relative">
+													<div class="category-info">
+														<h3 class="category-name b-category-name"><i><img src="../../assets/images/tea.png"></i><a title="花茶/名酒" class="ml-22">花茶/名酒</a></h3><em>&gt;</em></div>
+													<div class="menu-item menu-in top">
+														<div class="area-in">
+															<div class="area-bg">
+																<div class="menu-srot">
+																	<div class="sort-side">
+																		<dl class="dl-sort"><dt><span>花茶</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>铁观音</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>普洱</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>绿茶</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>红茶</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>龙井</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>乌龙茶</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>茉莉花茶</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>名酒</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>白酒</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>葡萄酒</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>洋酒</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>啤酒</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>黄酒</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>养生酒</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>陈年老酒</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>实力商家</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>茅台</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>劲牌</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>泸州老窖</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>竹叶青</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>西凤</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>蓝色经典</span></a>
+																			</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><b class="arrow"></b></li>
+												<li class="appliance js_toggle relative">
+													<div class="category-info">
+														<h3 class="category-name b-category-name"><i><img src="../../assets/images/package.png"></i><a title="箱包" class="ml-22">箱包</a></h3><em>&gt;</em></div>
+													<div class="menu-item menu-in top">
+														<div class="area-in">
+															<div class="area-bg">
+																<div class="menu-srot">
+																	<div class="sort-side">
+																		<dl class="dl-sort"><dt><span>精品男包</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>男士钱包</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>男士手包</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>双肩包</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>公文包</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>男士腰带</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>单肩斜挎</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>旅行箱包</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>拉杆箱包</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>电脑包</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>书包</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>休闲运动</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>旅行包</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>旅行配件</span></a>
+																			</dd>
+																		</dl>
+																		<dl class="dl-sort"><dt><span>实力商家</span></dt>
+																			<dd>
+																				<a href="javascript:void(0)"><span>美屡自营</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>安德里自营</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>巴特利专卖</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>皮尔卡丹</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>老人头</span></a>
+																			</dd>
+																			<dd>
+																				<a href="javascript:void(0)"><span>金利来</span></a>
+																			</dd>
+																		</dl>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><b class="arrow"></b></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mr-g mr-g-fixed smallnav">
+								<div class="mr-u-sm-3">
+									<a href="javascript:void(0)"><img src="../../assets/images/navsmall.jpg">
+										<div class="title">商品分类</div>
+									</a>
+								</div>
+								<div class="mr-u-sm-3">
+									<a href="javascript:void(0)"><img src="../../assets/images/huismall.jpg">
+										<div class="title">大聚惠</div>
+									</a>
+								</div>
+								<div class="mr-u-sm-3">
+									<a href="javascript:void(0)"><img src="../../assets/images/mansmall.jpg">
+										<div class="title">个人中心</div>
+									</a>
+								</div>
+								<div class="mr-u-sm-3">
+									<a href="javascript:void(0)"><img src="../../assets/images/moneysmall.jpg">
+										<div class="title">投资理财</div>
+									</a>
+								</div>
+							</div>
+							<div class="marqueen"><span class="marqueen-title">商城头条</span>
+								<div class="demo">
+									<ul>
+										<div class="mod-vip">
+											<div class="m-baseinfo">
+												<a href="javascript:void(0)"><img src="../../assets/images/getAvatar.do.jpg"></a><em> Hi,<span class="s-name">小叮当</span><a href="javascript:void(0)"><p>点击更多优惠活动</p></a></em></div>
+											<div class="member-logout">
+												<a href="javascript:void(0)" class="mr-btn-warning btn">登录</a>
+												<a href="javascript:void(0)" class="mr-btn-warning btn">注册</a>
+											</div>
+											<div class="member-login">
+												<a href="javascript:void(0)"><strong>0</strong>待收货</a>
+												<a href="javascript:void(0)"><strong>0</strong>待发货</a>
+												<a href="javascript:void(0)"><strong>0</strong>待付款</a>
+												<a href="javascript:void(0)"><strong>0</strong>待评价</a>
+											</div>
+											<div class="clear"></div>
+										</div>
+										<li class="title-first">
+											<a href="javascript:void(0)"><span>[特惠]</span>商城爆品1分秒杀 </a>
+										</li>
+										<li class="title-first">
+											<a target="_blank" href="javascript:void(0)"><span>[公告]</span>商城与长春市签署战略合作协议 </a>
+										</li>
+										<li>
+											<a target="_blank" href="javascript:void(0)"><span>[特惠]</span>洋河年末大促，低至两件五折</a>
+										</li>
+										<li>
+											<a target="_blank" href="javascript:void(0)"><span>[公告]</span>华北、华中部分地区配送延迟</a>
+										</li>
+										<li>
+											<a target="_blank" href="javascript:void(0)"><span>[特惠]</span>家电狂欢千亿礼券 买1送1！</a>
+										</li>
+									</ul>
+									<div class="advTip"><img src="../../assets/images/advTip.jpg"></div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div  class="banner">
+					<div  data-mr-flexslider="" id="demo-slider-0" class="mr-slider mr-slider-default scoll">
+						<div  id="box">
+							<ul  id="imagesUI" class="list">
+								<div >
+									<li  style=""><img  src="../../assets/images/ad1.png"></li>
+									<li  style="display: none;"><img  src="../../assets/images/ad2.png"></li>
+									<li  style="display: none;"><img  src="../../assets/images/ad3.png"></li>
+									<li  style="display: none;"><img  src="../../assets/images/ad4.png"></li>
+								</div>
+							</ul>
+							<ul  id="btnUI" class="count">
+								<li  class="current"> 1 </li>
+								<li  class=""> 2 </li>
+								<li  class=""> 3 </li>
+								<li  class=""> 4 </li>
+							</ul>
+						</div>
+					</div>
+					<div  class="clear"></div>
+				</div>
+				<div class="shopMainbg">
+					<div id="shopmain" class="shopMain">
+						<div class="mr-g mr-g-fixed recommendation">
+							<div class="clock mr-u-sm-3"><img src="../../assets/images/2016.png">
+								<p>今日<br>推荐</p>
+							</div>
+							<div class="mr-u-sm-4 mr-u-lg-3 ">
+								<div class="info ">
+									<h3>真的有鱼</h3>
+									<h4>开年福利篇</h4></div>
+								<div class="recommendationMain one">
+									<a href="javascript:void(0)"><img src="../../assets/images/tj.png"></a>
+								</div>
+							</div>
+							<div class="mr-u-sm-4 mr-u-lg-3 ">
+								<div class="info ">
+									<h3>囤货过冬</h3>
+									<h4>让爱早回家</h4></div>
+								<div class="recommendationMain two">
+									<a href="javascript:void(0)"><img src="../../assets/images/tj1.png"></a>
+								</div>
+							</div>
+							<div class="mr-u-sm-4 mr-u-lg-3 ">
+								<div class="info ">
+									<h3>浪漫情人节</h3>
+									<h4>甜甜蜜蜜</h4></div>
+								<div class="recommendationMain three ">
+									<a href="javascript:void(0)"><img src="../../assets/images/tj2.png"></a>
+								</div>
+							</div>
+						</div>
+						<div class="mr-container activity ">
+							<div class="shopTitle ">
+								<h4>活动</h4>
+								<h3>每期活动 优惠享不停 </h3><span class="more "><a href="javascript:void(0)">全部活动<i class="mr-icon-angle-right" style="padding-left: 10px;"></i></a></span></div>
+							<div class="mr-g mr-g-fixed ">
+								<div class="mr-u-sm-3 ">
+									<div class="icon-sale one "></div>
+									<h4>秒杀</h4>
+									<div class="activityMain ">
+										<a href="javascript:void(0)"><img src="../../assets/images/activity1.jpg"></a>
+									</div>
+									<div class="info ">
+										<h3><a href="javascript:void(0)">春节送礼优选</a></h3></div>
+								</div>
+								<div class="mr-u-sm-3 ">
+									<div class="icon-sale two "></div>
+									<h4>特惠</h4>
+									<div class="activityMain ">
+										<a href="javascript:void(0)"><img src="../../assets/images/activity2.jpg"></a>
+									</div>
+									<div class="info ">
+										<a href="javascript:void(0)">
+											<h3>春节送礼优选</h3></a>
+									</div>
+								</div>
+								<div class="mr-u-sm-3 ">
+									<div class="icon-sale three "></div>
+									<h4>团购</h4>
+									<div class="activityMain ">
+										<a href="javascript:void(0)"><img src="../../assets/images/activity3.jpg"></a>
+									</div>
+									<div class="info ">
+										<a href="javascript:void(0)">
+											<h3>春节送礼优选</h3></a>
+									</div>
+								</div>
+								<div class="mr-u-sm-3 last ">
+									<div class="icon-sale "></div>
+									<h4>超值</h4>
+									<div class="activityMain ">
+										<a href="javascript:void(0)"><img src="../../assets/images/activity.jpg"></a>
+									</div>
+									<div class="info ">
+										<a href="javascript:void(0)">
+											<h3>春节送礼优选</h3></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="f1">
+							<div class="mr-container ">
+								<div class="shopTitle ">
+									<h4>手机</h4>
+									<h3>手机风暴</h3>
+									<div class="today-brands ">
+										<a href="javascript:void(0)">小米</a>
+										<a href="javascript:void(0)">荣耀</a>
+										<a href="javascript:void(0)">乐视</a>
+										<a href="javascript:void(0)">魅族</a>
+										<a href="javascript:void(0)">联想</a>
+										<a href="javascript:void(0)">OPPO</a>
+									</div><span class="more "><a href="javascript:void(0)">更多手机<i class="mr-icon-angle-right" style="padding-left: 10px;"></i></a></span></div>
+							</div>
+							<div class="mr-g mr-g-fixed floodFive ">
+								<div class="mr-u-sm-5 mr-u-md-3 text-one list">
+									<div class="word">
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">十核</b></span></a>
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">八核</b></span></a>
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">双四核</b></span></a>
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">四核</b></span></a>
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">双核</b></span></a>
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">单核</b></span></a>
+									</div>
+									<a href="javascript:void(0)"><img src="../../assets/images/tel.png" width="100px" height="170px">
+										<div class="outer-con ">
+											<div class="title "> 免费领30天碎屏险 </div>
+											<div class="sub-title "> 颜值之星，双摄之星 </div>
+										</div>
+									</a>
+									<div class="triangle-topright"></div>
+								</div>
+								<div class="mr-u-sm-7 mr-u-md-5 mr-u-lg-2 text-two">
+									<div class="outer-con ">
+										<div class="title "> 荣耀8 </div>
+										<div class="sub-title "> ¥5888.00 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="../../assets/images/phone1.jpg"></a>
+								</div>
+								<div class="mr-u-md-2 mr-u-lg-2 text-three sug">
+									<div class="outer-con ">
+										<div class="title "> 一加手机 </div>
+										<div class="sub-title "> ¥2499.00 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="../../assets/images/phone2.jpg"></a>
+								</div>
+								<div class="mr-u-md-2 mr-u-lg-2 text-three big">
+									<div class="outer-con ">
+										<div class="title "> 红米 </div>
+										<div class="sub-title "> ¥1199.00 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="../../assets/images/phone5.jpg"></a>
+								</div>
+								<div class="mr-u-sm-4 mr-u-md-5 mr-u-lg-4 text-five">
+									<div class="outer-con ">
+										<div class="title "> LG G5 </div>
+										<div class="sub-title "> ¥2999.00 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="../../assets/images/phone3.jpg"></a>
+								</div>
+								<div class="mr-u-sm-4 mr-u-md-2 mr-u-lg-2 text-six">
+									<div class="outer-con ">
+										<div class="title "> 苹果4s手机 </div>
+										<div class="sub-title "> ¥2099.00 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="../../assets/images/phone4.jpg"></a>
+								</div>
+								<div class="mr-u-sm-4 mr-u-md-2 mr-u-lg-4 text-six big">
+									<div class="outer-con ">
+										<div class="title "> 魅族 魅蓝 </div>
+										<div class="sub-title "> ¥999.00 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="../../assets/images/phone5.jpg"></a>
+								</div>
+							</div>
+							<div class="clear "></div>
+						</div>
+						<div id="f2">
+							<div class="mr-container ">
+								<div class="shopTitle ">
+									<h4>电脑</h4>
+									<h3>新年换新机</h3>
+									<div class="today-brands ">
+										<a href="javascript:void(0)">戴尔</a>
+										<a href="javascript:void(0)">清华同方</a>
+										<a href="javascript:void(0)">小米 </a>
+										<a href="javascript:void(0)">联想</a>
+										<a href="javascript:void(0)">惠普</a>
+										<a href="javascript:void(0)">三星</a>
+									</div><span class="more "><a href="javascript:void(0)">更多电脑<i class="mr-icon-angle-right" style="padding-left: 10px;"></i></a></span></div>
+							</div>
+							<div class="mr-g mr-g-fixed floodFour">
+								<div class="mr-u-sm-5 mr-u-md-4 text-one list ">
+									<div class="word">
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">CPU</b></span></a>
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">显卡</b></span></a>
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">机箱</b></span></a>
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">键盘</b></span></a>
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">鼠标</b></span></a>
+										<a href="javascript:void(0)" class="outer"><span class="inner"><b class="text">U盘</b></span></a>
+									</div>
+									<a href="javascript:void(0)">
+										<div class="outer-con ">
+											<div class="title "> 致敬2016 </div>
+											<div class="sub-title "> 新春大礼包 </div>
+										</div><img src="../../assets/images/computerArt.png" width="120px" height="200px"></a>
+									<div class="triangle-topright"></div>
+								</div>
+								<div class="mr-u-sm-7 mr-u-md-4 text-two sug">
+									<div class="outer-con ">
+										<div class="title "> 惠普（HP）笔记本 </div>
+										<div class="sub-title "> ¥4999.00 </div><i class="mr-icon-shopping-basket mr-icon-md seprate"></i></div>
+									<a href="javascript:void(0)"><img src="../../assets/images/computer1.jpg"></a>
+								</div>
+								<div class="mr-u-sm-7 mr-u-md-4 text-two">
+									<div class="outer-con ">
+										<div class="title "> 罗技蓝牙键盘 </div>
+										<div class="sub-title "> ¥179.90 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="../../assets/images/computer2.jpg"></a>
+								</div>
+								<div class="mr-u-sm-3 mr-u-md-2 text-three big">
+									<div class="outer-con ">
+										<div class="title "> 米奇优盘 </div>
+										<div class="sub-title "> ¥39.90 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="data:image/jpeg;base64,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"></a>
+								</div>
+								<div class="mr-u-sm-3 mr-u-md-2 text-three sug">
+									<div class="outer-con ">
+										<div class="title "> 优派液晶显示器 </div>
+										<div class="sub-title "> ¥699.00 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="../../assets/images/computer4.jpg"></a>
+								</div>
+								<div class="mr-u-sm-3 mr-u-md-2 text-three ">
+									<div class="outer-con ">
+										<div class="title "> 联想笔记本 </div>
+										<div class="sub-title "> ¥6599.00 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="../../assets/images/computer5.jpg"></a>
+								</div>
+								<div class="mr-u-sm-3 mr-u-md-2 text-three last big ">
+									<div class="outer-con ">
+										<div class="title "> LG 航拍器 </div>
+										<div class="sub-title "> ¥699.00 </div><i class="mr-icon-shopping-basket mr-icon-md  seprate"></i></div>
+									<a href="javascript:void(0)"><img src="data:image/jpeg;base64,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"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="navCir">
+					<li class="active">
+						<a href="javascript:void(0)"><i class="mr-icon-home "></i>首页</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)"><i class="mr-icon-list"></i>商品</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)"><i class="mr-icon-shopping-basket"></i>购物车</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)"><i class="mr-icon-user"></i>我的</a>
+					</li>
+				</div>
+				<div class="footer ">
+					<div class="footer-hd ">
+						<p>
+							<a href="http://emlab.jxufe.edu.cn/" target="_blank">江西财大</a><b>|</b>
+							<a href="javascript:void(0)">商城首页</a><b>|</b>
+							<a href="javascript:void(0)">支付宝</a><b>|</b>
+							<a href="javascript:void(0)">物流</a>
+						</p>
+					</div>
+					<div class="footer-bd ">
+						<p>
+							<a href="javascript:void(0)">关于财大 </a>
+							<a href="javascript:void(0)">合作伙伴 </a>
+							<a href="javascript:void(0)">联系我们 </a>
+							<a href="javascript:void(0)">网站地图 </a><em>© 2016-2025 mingrisoft.com 版权所有</em></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
