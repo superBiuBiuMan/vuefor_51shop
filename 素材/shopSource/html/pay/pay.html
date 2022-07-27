@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../assets/css/basic.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/admin.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/hmstyle.css" />
+		
+		<link rel="stylesheet" type="text/css" href="../../assets/css/cartstyle.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/jsstyle.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/orderstyle.css" />
+
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="hmtop">
+				<div class="mr-container header">
+					<ul class="message-l">
+						<div class="topMessage">
+							<div class="menu-hd"><span style="color: green;">mr，欢迎您 <a style="color: red;">退出登录</a></span>
+								<a target="_top" style="color: red; margin-left: 20px;">免费注册</a>
+							</div>
+						</div>
+					</ul>
+					<ul class="message-r">
+						<div class="topMessage home">
+							<div class="menu-hd">
+								<a target="_top" class="h" style="color: red;">商城首页</a>
+							</div>
+						</div>
+						<div class="topMessage my-shangcheng">
+							<div class="menu-hd MyShangcheng">
+								<a href="#" target="_top"><i class="mr-icon-user mr-icon-fw"></i>个人中心</a>
+							</div>
+						</div>
+						<div class="topMessage mini-cart">
+							<div class="menu-hd">
+								<a id="mc-menu-hd" target="_top"><i class="mr-icon-shopping-cart  mr-icon-fw"></i><span style="color: red;">购物车</span><strong id="J_MiniCartNum" class="h">2</strong></a>
+							</div>
+						</div>
+						<div class="topMessage favorite">
+							<div class="menu-hd">
+								<a href="#" target="_top"><i class="mr-icon-heart mr-icon-fw"></i><span>收藏夹</span></a>
+							</div>
+						</div>
+					</ul>
+				</div>
+				<div class="nav white">
+					<div class="logo">
+						<a><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABOCAYAAACngR3fAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5YzU4MmE3Zi1jY2QyLTcyNDYtODcxNS02N2E3ZjFlMjZjYTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTgwQzAxMkVEQkNBMTFFNkI3ODVCNzRFMjI5M0UxRjQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTgwQzAxMkREQkNBMTFFNkI3ODVCNzRFMjI5M0UxRjQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjEwMzk0OGZjLTQ5MDItNmY0Ni04ZjQxLTFmOTMzNDRkNTc0YiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5YzU4MmE3Zi1jY2QyLTcyNDYtODcxNS02N2E3ZjFlMjZjYTQiLz4gPC9y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"></a>
+					</div>
+					<div class="logoBig">
+						<li><img src="../../assets/images/logobig.png"></li>
+					</div>
+					<div class="search-bar pr">
+						<form><input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off"><input id="ai-topsearch" value="搜索" index="1" type="submit" class="submit mr-btn"></form>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="concent">
+				<div class="paycont">
+					<div class="address">
+						<h3>确认收货地址 </h3>
+						<div class="control">
+							<div class="tc-btn createAddr theme-login mr-btn mr-btn-danger">使用新地址</div>
+						</div>
+						<div class="clear"></div>
+						<ul>
+							<div class="per-border"></div>
+							<li class="user-addresslist defaultAddr">
+								<div class="address-left">
+									<div class="user DefaultAddr"><span class="buy-address-detail"><span class="buy-user">李丹 </span><span class="buy-phone">1586699****</span></span>
+									</div>
+									<div class="default-address DefaultAddr"><span class="buy-line-title buy-line-title-type">收货地址：</span><span class="buy--address-detail"><span class="province">吉林</span>省 <span class="city">长春</span>市 <span class="dist">南关区</span>区 <span class="street">卫星广场财富领域5A16室</span></span>
+									</div><ins class="deftip">默认地址</ins></div>
+								<div class="address-right">
+									<a href="javascript:void(0)"><span class="mr-icon-angle-right mr-icon-lg"></span></a>
+								</div>
+								<div class="clear"></div>
+								<div class="new-addr-btn">
+									<a href="javascript:void(0)" class="hidden">设为默认</a><span class="new-addr-bar hidden">|</span>
+									<a href="javascript:void(0)">编辑</a><span class="new-addr-bar">|</span>
+									<a href="javascript:void(0);">删除</a>
+								</div>
+							</li>
+							<div class="per-border"></div>
+							<li class="user-addresslist">
+								<div class="address-left">
+									<div class="user DefaultAddr"><span class="buy-address-detail"><span class="buy-user">李丹 </span><span class="buy-phone">1586699****</span></span>
+									</div>
+									<div class="default-address DefaultAddr"><span class="buy-line-title buy-line-title-type">收货地址：</span><span class="buy--address-detail"><span class="province">吉林</span>省 <span class="city">吉林</span>市 <span class="dist">船营</span>区 <span class="street">东湖路75号众环大厦2栋9层902</span></span>
+									</div><ins class="deftip hidden">默认地址</ins></div>
+								<div class="address-right"><span class="mr-icon-angle-right mr-icon-lg"></span></div>
+								<div class="clear"></div>
+								<div class="new-addr-btn">
+									<a href="javascript:void(0)">设为默认</a><span class="new-addr-bar">|</span>
+									<a href="javascript:void(0)">编辑</a><span class="new-addr-bar">|</span>
+									<a href="javascript:void(0);">删除</a>
+								</div>
+							</li>
+						</ul>
+						<div class="clear"></div>
+					</div>
+					<div class="logistics">
+						<h3>选择物流方式</h3>
+						<ul class="op_express_delivery_hot">
+							<li data-value="yuantong" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position: 0px -468px;"></i>圆通<span></span></li>
+							<li data-value="shentong" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position: 0px -1008px;"></i>申通<span></span></li>
+							<li data-value="yunda" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position: 0px -576px;"></i>韵达<span></span></li>
+							<li data-value="zhongtong" class="OP_LOG_BTN op_express_delivery_hot_last "><i class="c-gap-right" style="background-position: 0px -324px;"></i>中通<span></span></li>
+							<li data-value="shunfeng" class="OP_LOG_BTN  op_express_delivery_hot_bottom"><i class="c-gap-right" style="background-position: 0px -180px;"></i>顺丰<span></span></li>
+						</ul>
+					</div>
+					<div class="logistics">
+						<h3>选择支付方式</h3>
+						<ul class="pay-list">
+							<li class="pay card"><img src="../../assets/images/wangyin.jpg">银联<span></span></li>
+							<li class="pay qq"><img src="../../assets/images/weizhifu.jpg">微信<span></span></li>
+							<li class="pay taobao"><img src="../../assets/images/zhifubao.jpg">支付宝<span></span></li>
+						</ul>
+					</div>
+					<div>
+						<div class="concent">
+							<div id="payTable">
+								<h3>确认订单信息</h3>
+								<div class="cart-table-th">
+									<div class="wp">
+										<div class="th th-item">
+											<div class="td-inner">商品信息</div>
+										</div>
+										<div class="th th-price">
+											<div class="td-inner">单价</div>
+										</div>
+										<div class="th th-amount">
+											<div class="td-inner">数量</div>
+										</div>
+										<div class="th th-sum">
+											<div class="td-inner">金额</div>
+										</div>
+										<div class="th th-oplist">
+											<div class="td-inner">配送方式</div>
+										</div>
+									</div>
+								</div>
+								<div class="clear"></div>
+								<div class="main">
+									<div class="goods"><span class="name"><img src="../../assets/images/oppo.jpg"> OPPO R15 智能手机 全网通 </span><span class="unitPrice">599.00</span><span class="num"> 2 </span><span class="unitTotalPrice">1198.00</span><span class="pay-logis"> 快递送货 </span></div>
+									<div class="goods"><span class="name"><img src="../../assets/images/vivo.jpg"> vivo X27 8GB+256GB大内存 </span><span class="unitPrice">699.00</span><span class="num"> 1 </span><span class="unitTotalPrice">699.00</span><span class="pay-logis"> 快递送货 </span></div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="pay-total">
+								<div class="order-extra">
+									<div class="order-user-info">
+										<div id="holyshit257" class="memo"><label>买家留言：</label><input type="text" title="选填,对本次交易的说明（建议填写已经和卖家达成一致的说明）" placeholder="选填,建议填写和卖家达成一致的说明" class="memo-input J_MakePoint c2c-text-default memo-close">
+											<div class="msg hidden J-msg">
+												<p class="error">最多输入500个字符</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="buy-agio">
+									<li class="td td-coupon"><span class="coupon-title">优惠券</span>
+										<select data-mr-selected="">
+											<option value="8">
+												<div class="c-price"><strong>￥8</strong></div>
+												<div class="c-limit"> 【消费满95元可用】 </div>
+											</option>
+											<option value="3" selected="selected">
+												<div class="c-price"><strong>￥3</strong></div>
+												<div class="c-limit"> 【无使用门槛】 </div>
+											</option>
+										</select>
+									</li>
+									<li class="td td-bonus"><span class="bonus-title">红包</span>
+										<select data-mr-selected="">
+											<option value="10.4">
+												<div class="item-info"> ¥50.00<span>元</span></div>
+												<div class="item-remainderprice"><span>还剩</span>10.40<span>元</span></div>
+											</option>
+											<option value="50" selected="selected">
+												<div class="item-info"> ¥50.00<span>元</span></div>
+												<div class="item-remainderprice"><span>还剩</span>50.00<span>元</span></div>
+											</option>
+										</select>
+									</li>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="buy-point-discharge ">
+								<p class="price g_price "> 合计（含运费） <span>¥</span><em class="pay-sum">1844.00</em></p>
+							</div>
+							<div class="order-go clearfix">
+								<div class="pay-confirm clearfix">
+									<div class="box">
+										<div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em><span class="price g_price "><span>¥</span><em id="J_ActualFee" class="style-large-bold-red ">1844.00</em></span>
+										</div>
+										<div id="holyshit268" class="pay-address">
+											<p class="buy-footer-address"><span class="buy-line-title buy-line-title-type">寄送至：</span><span class="buy--address-detail"><span class="province">吉林</span>省 <span class="city">长春</span>市 <span class="dist">南关</span>区 <span class="street">卫星广场财富领域5A16室</span></span>
+											</p>
+											<p class="buy-footer-address"><span class="buy-line-title">收货人：</span><span class="buy-address-detail"><span class="buy-user">李丹 </span><span class="buy-phone">1586699****</span></span>
+											</p>
+										</div>
+									</div>
+									<div id="holyshit269" class="submitOrder">
+										<div class="go-btn-wrap">
+											<a id="J_Go" tabindex="0" title="点击此按钮，提交订单" class="btn-go">提交订单</a>
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="footer ">
+							<div class="footer-hd ">
+								<p>
+									<a href="http://emlab.jxufe.edu.cn/" target="_blank">江西财大</a><b>|</b>
+									<a href="javascript:void(0)">商城首页</a><b>|</b>
+									<a href="javascript:void(0)">支付宝</a><b>|</b>
+									<a href="javascript:void(0)">物流</a>
+								</p>
+							</div>
+							<div class="footer-bd ">
+								<p>
+									<a href="http://emlab.jxufe.edu.cn/" target="_blank">江西财大</a>
+									<a href="javascript:void(0)">合作伙伴 </a>
+									<a href="javascript:void(0)">联系我们 </a>
+									<a href="javascript:void(0)">网站地图 </a><em>© 2016-2025 mingrisoft.com 版权所有</em></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

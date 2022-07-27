@@ -1,0 +1,95 @@
+.box{
+margin:0 auto;
+width:70%;
+font-family:微软雅黑;
+font-size:14px;
+}
+.main,.info{
+width: 100%;
+}
+.box .title{
+height:50px;
+line-height:50px;
+border:1px solid #CCCCCC;
+margin-bottom:10px;}
+.goods{
+clear:both;
+height:120px;
+line-height:120px;
+display: flex;
+    justify-content:center;
+    align-items:center;
+	border:1px solid #EEEEEE;
+	}
+.main div:not(:last-child){
+border-bottom:none}
+.goods img{
+width:80px;
+vertical-align:middle}
+.title span{
+float:left}
+.title span,.goods span{ text-align:center
+}
+span{ 
+display: inline-block; 
+}
+.name{ 
+width: 50%;
+} 
+.goods span.name{
+    text-align: left;
+	padding-left:6%;
+}
+.unitPrice{
+width: 10%;
+}
+.num{ 
+width: 20%;
+}
+.num span{
+width:20px;
+height:20px;
+line-height:20px;
+text-align:center;
+background:#FF3300;
+cursor:pointer;
+color:#FFFFFF}
+.num .off{
+background:#CCCCCC;
+}
+.unitTotalPrice{ 
+width: 8%;
+} 
+.pay-logis{
+width:12%;}
+.goods .operation a{
+cursor:pointer;}
+.totalNum,.totalPrice{ 
+font-size: 16px; 
+color: #f90; 
+}
+.info{
+margin-top:10px;
+height:50px;
+line-height:50px;
+background:#EEEEEE
+}
+.info span:first-child{
+margin-left:10px;
+}
+.info span:nth-child(2){
+margin-left:63%;
+}
+.info span:nth-child(3){
+margin-left:10px;
+}
+.info span:nth-child(4){
+float:right;
+width:80px;
+height:50px;
+line-height:50px;
+text-align:center;
+background:#FF3300;
+color:#FFFFFF;
+cursor: pointer;
+}

@@ -1,7 +1,8 @@
 <template>
 <div class="register-container">
-      <!-- 头部 -->
-    <Top></Top>
+ <!-- 头部 -->
+<Top></Top>
+<div class="register-container">
     <div class="register">
         <h3>注册新用户
           <span class="go">我有账号，去 <router-link to="/login">登录</router-link>
@@ -88,8 +89,9 @@
           <button @click.prevent="register">完成注册</button>
         </div>
     </div>
-      <!--底部-->
-    <Footer></Footer>
+</div>
+<!--底部-->
+<Footer></Footer>
 </div>
 </template>
 
