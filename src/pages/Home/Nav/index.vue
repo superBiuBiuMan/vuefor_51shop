@@ -78,6 +78,9 @@ export default {
 		    RMenu,
         Banner,
     },
+    // props:{
+    //   token:String
+    // }
 };
 </script>
 

@@ -3,8 +3,9 @@
 			<div  class="mr-container header">
 				<ul  class="message-l">
 					<div  class="topMessage">
-						<div  class="menu-hd"><span  style="color: green;">mr，欢迎您 <a  style="color: red;">退出登录</a></span>
-							<a  target="_top" style="color: red; margin-left: 20px;">免费注册</a>
+						<div  class="menu-hd">
+							<span v-if="token" style="color: green;">{{token}}，欢迎您的到来<a  style="color: red;margin-left: 20px;" @click="loginOut">退出登录</a></span>
+							<router-link v-else :to="{name:'Register'}" style="color: red; margin-left: 20px;">免费注册</router-link>
 						</div>
 					</div>
 				</ul>
@@ -36,7 +37,7 @@
 					<a ><img  src="/images/logo.png"></a>
 				</div>
 				<div  class="logoBig">
-					<li ><img  src="/images/logobig.png"></li>
+					<li ><router-link :to="{name:'Home'}"><img  src="/images/logobig.png"></router-link></li>
 				</div>
 				<div  class="search-bar pr">
 					<form ><input  id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off"><input  id="ai-topsearch" value="搜索" index="1" type="submit" class="submit mr-btn"></form>
@@ -47,13 +48,21 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: 'Top',
+  computed:{
+    ...mapState(["token"]),
+  },
+  methods:{
+	//登出
+	loginOut(){
+		this.$store.dispatch("userLoginOut");
+		alert("退出登录成功");
+	}
+  }
 }
 </script>
 
 <style>
-.hmtop{
-	
-}
 </style>

@@ -78,18 +78,14 @@ export default {
         }
         let { phone,password} = this;
         if(phone && password){
-          //发送请求
           try {
+            let result = await this.$store.dispatch("userLogin",{phone,password});
             //不管有没有勾选,都设置为了存储,
-            await this.$store.dispatch("login",{phone,password});
-            // alert("登录成功!");
-            this.$message.success("登录成功!");
-            let redirect = this.$route.query.redirect || "/";
-            this.$router.push(redirect);
+            // await this.$store.dispatch("login",{phone,password});
+            alert(result);
+            // this.$router.push({name:"Home"});
           } catch (error) {
-             this.$message.error(error);
-            // alert(error);
-            // console.log(error);
+              alert(error);
           }
         } 
       }
@@ -99,14 +95,14 @@ export default {
 
 <style scoped>
 .login-wrap {
-  height: 487px;
+  height: 477px;
   background-color: #e93854;
 }
 .login-wrap .login {
   width: 1200px;
-  height: 487px;
+  height: 477px;
   margin: 0 auto;
-  background: url(./images/loginbg.png) no-repeat;
+  background: url("/public/images/big.png") no-repeat;
 }
 .login-wrap .loginform {
   width: 420px;

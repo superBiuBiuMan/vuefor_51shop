@@ -33,14 +33,6 @@
 <script>
 export default {
   name: 'Recommend',
-  methods:{
-    test(){
-        var a = [];
-        a.forEach(item=>{
-            
-        })
-    }
-  }
 }
 </script>
 

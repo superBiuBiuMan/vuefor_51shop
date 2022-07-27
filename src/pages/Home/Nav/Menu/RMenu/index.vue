@@ -7,17 +7,13 @@
               <div class="mod-vip">
                 <div class="m-baseinfo">
                   <a href="javascript:void(0)"><img src="/images/getAvatar.do.jpg" /></a><em>
-                    Hi,<span class="s-name">小叮当</span><a href="javascript:void(0)"><p>点击更多优惠活动</p></a></em>
+                    Hi,<span class="s-name">{{token}}</span><a href="javascript:void(0)"><p>点击更多优惠活动</p></a></em>
                 </div>
-                <div class="member-logout">
-                  <a href="javascript:void(0)" class="mr-btn-warning btn"
-                    >登录</a
-                  >
-                  <a href="javascript:void(0)" class="mr-btn-warning btn"
-                    >注册</a
-                  >
+                <div class="member-logout" v-if="!token">
+                  <router-link :to="{name:'Login'}" class="mr-btn-warning btn">登录</router-link>
+                  <router-link :to="{name:'Register'}" class="mr-btn-warning btn">注册</router-link>
                 </div>
-                <div class="member-login">
+                <div class="member-login" v-else style="display:block;">
                   <a href="javascript:void(0)"><strong>0</strong>待收货</a>
                   <a href="javascript:void(0)"><strong>0</strong>待发货</a>
                   <a href="javascript:void(0)"><strong>0</strong>待付款</a>
@@ -59,8 +55,12 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: 'RMenu',
+  computed:{
+    ...mapState(["token"]),
+  }
 }
 </script>
 
