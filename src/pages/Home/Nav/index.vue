@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div>
+      <div class="show">
           <!-- 左侧菜单栏组件-LMenu -->
           <LMenu></LMenu>
           <Banner></Banner>
@@ -84,4 +84,11 @@ export default {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style scoped>
+@media screen and (min-width:1024px){
+  .show{
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>
