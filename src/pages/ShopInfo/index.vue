@@ -1,632 +1,903 @@
 <template>
   <div class="shopinfo-container">
-       <!-- 头部 -->
+    <!-- 头部 -->
     <Top></Top>
-    <div><b class="line"></b>
-        <div class="nav-table">
-            <div>
-                <div class="long-title"><span class="all-goods">全部分类</span></div>
-                <div class="nav-cont">
-                    <ul>
-                        <li class="index">
-                            <a href="javascript:void(0)">首页</a>
-                        </li>
-                        <li class="qc">
-                            <a href="javascript:void(0)">闪购</a>
-                        </li>
-                        <li class="qc">
-                            <a href="javascript:void(0)">生鲜</a>
-                        </li>
-                        <li class="qc">
-                            <a href="javascript:void(0)">团购</a>
-                        </li>
-                        <li class="qc last">
-                            <a href="javascript:void(0)">全球购</a>
-                        </li>
-                    </ul>
-                    <div class="nav-extra"><i class="mr-icon-user-secret mr-icon-md nav-user"></i><b></b>我的福利 <i class="mr-icon-angle-right" style="padding-left: 10px;"></i></div>
-                </div>
-            </div>
-        </div>
+    <div>
+      <!-- <b class="line"></b> -->
+      <div class="nav-table" style="border-bottom:2px solid #d2364c ;">
         <div>
-            <ol class="mr-breadcrumb mr-breadcrumb-slash">
-                <li>
-                    <a href="javascript:void(0)">首页</a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)">分类</a>
-                </li>
-                <li class="mr-active">内容</li>
-            </ol>
-            <div class="scoll">
-                <section class="slider">
-                    <div class="flexslider">
-                        <ul class="slides">
-                            <li><img src="images/01.jpg" title="pic"></li>
-                            <li><img src="images/02.jpg"></li>
-                            <li><img src="images/03.jpg"></li>
-                        </ul>
-                    </div>
-                </section>
+          <div class="long-title"><span class="all-goods">全部分类</span></div>
+          <div class="nav-cont" >
+            <ul>
+              <li class="index">
+                <a href="javascript:void(0)">首页</a>
+              </li>
+              <li class="qc">
+                <a href="javascript:void(0)">闪购</a>
+              </li>
+              <li class="qc">
+                <a href="javascript:void(0)">生鲜</a>
+              </li>
+              <li class="qc">
+                <a href="javascript:void(0)">团购</a>
+              </li>
+              <li class="qc last">
+                <a href="javascript:void(0)">全球购</a>
+              </li>
+            </ul>
+            <div class="nav-extra">
+              <i class="mr-icon-user-secret mr-icon-md nav-user"></i
+              ><b></b>我的福利
+              <i class="mr-icon-angle-right" style="padding-left: 10px"></i>
             </div>
-            <div class="item-inform">
-                <div id="clearcontent" class="clearfixLeft">
-                    <div class="box">
-                        <div class="enlarge" @mouseenter="mouseEnterShow" @mouseleave="mouseLeaveHiden" @mousemove="mouseMovePic">
-                            <!-- 小图 -->
-                            <img src="images/01.jpg" title="细节展示放大镜特效">
-                            <!-- style="display: none; left: 0px; top: 198px;" -->
-                            <span class="tool" ></span>
-                            <!-- 大图 -->
-                            <div class="bigbox" style="display: none;">
-                                <img src="images/01.jpg" class="bigimg" style="left: 0px; top: -396px;">
-                            </div>
-                        </div>
-                        <ul id="thumblist" class="tb-thumb">
-                            <li class="selected">
-                                <div class="tb-pic tb-s40">
-                                    <a href="javascript:void(0)"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAA2ADYDAREAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAABQcEBgMICQD/xAA/EAABAgQEAgUGCwkAAAAAAAABAgMABAURBgcSMRMhCEFRYbEiIzJxkdEUFRczVWJzgZOhwRZSY3KDkpSi8P/EABkBAAMBAQEAAAAAAAAAAAAAAAIDBAEABf/EACQRAAICAQMEAwEBAAAAAAAAAAABAgMRBBIhEzFBURQiYXEy/9oADAMBAAIRAxEAPwDaHHdRn5JIEo+pkBAVdIFySTv7BCbpOK4Dgsi7xJmLWKDSH6nOVF0MMAa9LSFHmQBuO0iEQnZJ4TDcYpZZiw5mXV69Sk1Kn1ZS5ZXK/Cbuk9hsDYwVjsrltbMhtmspGOp5rt0ucTJ1DEgamEAF9KmlXSCLi2lFusQMZzl5CcUgFXc+qXT5dlS8YstKXyN5d0i4HO3m9o1u3wYlEjS/SDor7TjjOM3HEtgFwoknCE3NuZ4faR7YHNxuID6y0rasRYKkKyZgTKZlBW27o060X8k2sLcrdQiqltx+3cVNJPgg5jfNgfUHiqF3hQFRiWSl5+nOSk0wl9ly2ptQJBsb9USqTi8oZhNYYMpFKkKJSkyVMk25NkFSuE3ewJPf90ZKTk8s1JLhCxzTY14pmngLgpaSfXwkRVpVngKS+uRNZh6VTUqxe2lCle02/SL+nwISTKqJUkGwBHdE9kcBqDOmPRkGnInCif3ae0P9RAU/5FzWGFsxbaR28MeKoC82Au3ktH53Xp+ra8SDUDKiGgnzWvbnqtGM1CtxyELxXUJZ0hLb7bAClbJWGk6T6twe4kxbpfATX1ERj5K/2ieZcSUrZSlsg9u58Y9qEE0Ssr6SpBMT2xWMBwkzpX0ZiDkZhUjrkG7/ANoiCvs/6wZ9wrmJ6I+zHiqF3nQF5MC6DErHIET/ACBgGahXZlMVGn4nVUXJc/A5ttrhLUm6HNLaUkHvuDy364q0+2XHlBZcUKyuoomI5mYW1Mpp9SbWUpbmFeaeA5ABzqNtte2xUer1Y3SgsS5QGxS7FUqdEmZF0szjTsq5a4DiSLjqI7R3jlCLbvK5CjUmdFejQnTkbhVN72kGxft5CEVPMck9ixLAUzD6vs0+KoXebAXj/omJWNQHqJ3gGagz8WydVw4mTn5ZExLONgKQofmOw94hEpShPdEdFJxwzU/NrLWq4MmnKlK8Seori7h+11sEn0XLfkrY920V06zq8PhmShs5XYpbNTmX5VMiHFvNk2Q16ViewfpBTab3MKM+MHRjo7Sz0nk1hyUmWy2+xKJbcQd0qAsRFGmkpVqS8kdyam0ybmGfKt/CT4qjLwYC6mVeSecSDkB5/mDaBNRZKe6huhI1Xvw+XOJ7U+cIdBoGzgYmmVsvtIcacSULbWApKgdwQdwYj2zznDHpx9ixp+UmH6Fi13EVObW42ebEmrykyyzupPWR2A+jz35W3U2X2V7Ev6Fp41Qnls2gymBGB5QEEEKWLH+Yx7ugTWnin6PN1LTtk0ScY4emay3eUnES7hQEHiJJFgSQRb1n/t3WV70KjLBRpjK3EDt7YglE/wBFXvhPxX7D6v4Q1ZQYiUeeJpT/AB1e+O+L+m9X8LHLZez6KW1KO1SXWtKQlSw2QDbuvHPTPGMndUx/JvN/SbH4Z98D8V+zeqj3ybzf0mx+GffHfEfs7qr0XXC9JFForVP43HKCpRXp03JJO33xVXDZHAqUtzyf/9k="></a>
-                                </div>
-                            </li>
-                            <li class="">
-                                <div class="tb-pic tb-s40">
-                                    <a href="javascript:void(0)"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAA2ADYDAREAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAABggABQQHCQID/8QAQBAAAQIEAgYFBgwHAAAAAAAAAQIDAAQFEQYhBxITMUFhFDZRcbMIIiMycnQWMzQ3QkVSYmR1gpGSlKGyweHx/8QAGgEAAwEBAQEAAAAAAAAAAAAAAAIDBAUBBv/EACURAAICAQQCAgIDAAAAAAAAAAABAgMRBBIxMiFBE1EUM2Fxgf/aAAwDAQACEQMRAD8AcuAAY0rVVVE0e1erJQpzorSVlCVapUNdNxfhcZROzqxocixL01obdWTR5wpKgQjpKNVIG8D0d7HmSey0QVOSrngEK/5R8vI1lbBodScDYF0icbCTcXt8Xfj2wPSt+wVqXojflK08ygmDQ1IXc+iM+dcW45N2z74X8V/Z78y+h48MvLmcN0yYcUpS3ZNpaio3JJQCbmNcOqIS5ZYQx4SAAG0+EDQ9iMkXAlhl+tMJZ1Hr7CQVSV2Tyk7xYKB7QcwYpRHdDI9iwzTeIFofr88pRt6ZSQeQNv8AEPhixSZhqlPMKkkKHKJsZ14WUdc8G54Qox/AMeGIWvqicuWWsMKSAAG0+/M9iPd8mH96YSzqPDsJpPt7allRFnZVBUBbNbeZP8OZ7jyi2meeC1iF/mxtHluK81alEkRtlXFmc8JdKUlJHCMtiKRm8YZ1ywbb4IUa27oDHhiM8OqElyy1hhSQABOnVh2Z0TV+WYTrOvMIbQL2uouJAH9Yna0oNsevzISaqz0xRJWcZqMssLYSUrbX5jiFbsjwOfMcjDUYa3RZfc14YBVLD9NrIE1h9/bOr9eRUnVeSfuDcsckm/K27T8/qfj+fQfGnwCs7SNjtErWWlo9ZKwQQey0ZrLcMPhWOTrDg3qhRvcGPDEEOqM8uWWsMKSAAW0r9Qp/22PGREdR+qRSrujRWmHAMjjPDzzBV0Oo2AZmkpucjcJWOKbjvHDsPDp1c9PxwdKVSs/sT/ElGrWEa05Sa3Kql5hBuhW9Lib5KQriP+GxjqwvVq3QZmacHiR85mdmqslLCtebfUNVGWss8ucS8QeeCjluWDqbg3qhRvcGPDEdCHVGCXLLWGFJAALaV+oU/wC2x46IjqP1SKVd0a+qrraUNjWUSSSbDjb/AHHzNskkjsVp+QJx3hKi4yo66bWZfaC5U08nJxlR+kg8O7ceN4nTfOmW6I86ozjhmrsHaK5fBLNXm6lOJnJ0tOpkng0dUN6p3diyN/ZuGVyaazWO9xivC8f6w02nVabfljt4M6n0b8vY8MR9VDqjhS5ZbQwpIAKTHTCJnCs6w4lC0FKVKStNwQlQUQR3CEsWYtDQeGaJrBw8p0BdHl1aotnLNmOfKMn7NUWivBw0fqSW/lW4XZL7PcoyZaTw/MqCEUWSuftSrcChJ+w3IYnDqA1QpFjfsZdtsm2RKUgZftHTisRSMbeXkz4Y8P/Z"></a>
-                                </div>
-                            </li>
-                            <li class="">
-                                <div class="tb-pic tb-s40">
-                                    <a href="javascript:void(0)"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAA2ADYDAREAAhEBAxEB/8QAGwABAAEFAQAAAAAAAAAAAAAAAAYBAwQFBwj/xAAsEAABAwMBBgQHAAAAAAAAAAABAAIDBAUREgYHITFBQhMiUWEUFRYyQ3KR/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAEDAgT/xAAhEQEAAgIBAwUAAAAAAAAAAAAAAQIDEmEhMZERQVFxof/aAAwDAQACEQMRAD8A9loCAgICAgICAgICAgICAgICAgICAg5NDQ7wJagOuNPeZJo2FjnR3BsUEruPnDGPBx/OHReKaZp7totSOyrLTt8dOuBw+7VmrmP6/n9efr7KaZefK7VZYsO0U1M2OspJ5XYGsfFSFpcOoBkPVSceWfb9WL1hErHsbvVdeT9Ty2avtAD9MMEUzZCe3i6Yge/NdWxT6dK9ftIv8yldXadrA1gpKOpBDxr11shyzqBiUYPLipFMvPk2q1sti2/lcwP+Ywsy7Waa4SMcR26S6Uge+QU0y8+Taq7BRb0IfDprSbjBoa4yT3OqinEmSMAeZxzz7R1WlK5olzM0mHXF6mQgICAgICAgICAgICAgICAgICAgIP/Z"></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="clearfixRight">
-                    <div class="tb-detail-hd">
-                        <h1> 华为 荣耀 畅玩4X 白色 移动4G手机 </h1></div>
-                    <div class="tb-detail-list">
-                        <div class="tb-detail-price">
-                            <li class="price iteminfo_price"><dt>促销价</dt>
-                                <dd><em>¥</em><b class="sys_item_price">499.00</b></dd>
-                            </li>
-                            <li class="price iteminfo_mktprice"><dt>原价</dt>
-                                <dd><em>¥</em><b class="sys_item_mktprice">599.00</b></dd>
-                            </li>
-                            <div class="clear"></div>
-                        </div>
-                        <dl class="iteminfo_parameter freight"><dt>配送至</dt>
-                            <div class="iteminfo_freprice">
-                                <div class="mr-form-content address">
-                                    <select data-mr-selected="">
-                                        <option value="a">浙江省</option>
-                                        <option value="b">吉林省</option>
-                                    </select>
-                                    <select data-mr-selected="">
-                                        <option value="a">温州市</option>
-                                        <option value="b">长春市</option>
-                                    </select>
-                                    <select data-mr-selected="">
-                                        <option value="a">瑞安区</option>
-                                        <option value="b">南关区</option>
-                                    </select>
-                                </div>
-                                <div class="pay-logis"> 快递<b class="sys_item_freprice">10</b>元 </div>
-                            </div>
-                        </dl>
-                        <div class="clear"></div>
-                        <ul class="tm-ind-panel">
-                            <li class="tm-ind-item tm-ind-sellCount canClick">
-                                <div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">1015</span></div>
-                            </li>
-                            <li class="tm-ind-item tm-ind-sumCount canClick">
-                                <div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">6015</span></div>
-                            </li>
-                            <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-                                <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">640</span></div>
-                            </li>
-                        </ul>
-                        <div class="clear"></div>
-                        <dl class="iteminfo_parameter sys_item_specpara"><dt class="theme-login"><div class="cart-title">可选规格<span class="mr-icon-angle-right"></span></div></dt>
-                            <dd>
-                                <div class="theme-popover-mask"></div>
-                                <div class="theme-popover">
-                                    <div class="theme-span"></div>
-                                    <div class="theme-poptit">
-                                        <a href="javascript:;" title="关闭" class="close">×</a>
-                                    </div>
-                                    <div class="theme-popbod dform">
-                                        <form name="loginform" action="" method="post" class="theme-signin">
-                                            <div class="theme-signin-left">
-                                                <div class="theme-options">
-                                                    <div class="cart-title">颜色</div>
-                                                    <ul>
-                                                        <li class="sku-line selected">荣耀金<i></i></li>
-                                                        <li class="sku-line">冰河银<i></i></li>
-                                                        <li class="sku-line">雅典灰<i></i></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="theme-options">
-                                                    <div class="cart-title">套装</div>
-                                                    <ul>
-                                                        <li class="sku-line selected">保护套装<i></i></li>
-                                                        <li class="sku-line">原厂电源<i></i></li>
-                                                        <li class="sku-line">存储套装<i></i></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="theme-options">
-                                                    <div class="cart-title number">数量</div>
-                                                    <dd><input id="min" type="button" value="-" class="mr-btn mr-btn-default"><input id="text_box" type="text" value="1" style="width: 30px;"><input id="add" type="button" value="+" class="mr-btn mr-btn-default"><span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
-                                                    </dd>
-                                                </div>
-                                                <div class="clear"></div>
-                                                <div class="btn-op">
-                                                    <div class="btn mr-btn mr-btn-warning">确认</div>
-                                                    <div class="btn close mr-btn mr-btn-warning">取消</div>
-                                                </div>
-                                            </div>
-                                            <div class="theme-signin-right">
-                                                <div class="img-info"><img src=""></div>
-                                                <div class="text-info"><span class="J_Price price-now">¥39.00</span><span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </dd>
-                        </dl>
-                        <div class="clear"></div>
-                        <div class="shopPromotion gold">
-                            <div class="hot"><dt class="tb-metatit">店铺优惠</dt>
-                                <div class="gold-list">
-                                    <p>购物满2件打8折，满3件7折</p>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="pay">
-                        <div class="pay-opt">
-                            <a href="index.html"><span class="mr-icon-home mr-icon-fw">首页</span></a>
-                            <a><span class="mr-icon-heart mr-icon-fw">收藏</span></a>
-                        </div>
-                        <li>
-                            <div class="clearfix tb-btn tb-btn-buy theme-login">
-                                <a id="LikBuy" title="点此按钮到下一步确认购买信息">立即购买</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="clearfix tb-btn tb-btn-basket theme-login">
-                                <a id="LikBasket" title="加入购物车"><i></i>加入购物车</a>
-                            </div>
-                        </li>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
+          </div>
         </div>
-        <div>
-            <div class="match">
-                <div class="match-title">优惠套装</div>
-                <div class="match-comment">
-                    <ul class="like_list">
-                        <li>
-                            <div class="s_picBox">
-                                <a href="javascript:void(0)" class="s_pic"><img src="data:image/jpeg;base64,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"></a>
-                            </div>
-                            <a target="_blank" href="javascript:void(0)" class="txt">防爆玻璃钢化膜</a>
-                            <div class="info-box"><span class="info-box-price">¥ 29.90</span> <span class="info-original-price">￥ 199.00</span></div>
-                        </li>
-                        <li class="plus_icon"><i>+</i></li>
-                        <li>
-                            <div class="s_picBox">
-                                <a href="javascript:void(0)" class="s_pic"><img src="data:image/jpeg;base64,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"></a>
-                            </div>
-                            <a target="_blank" href="javascript:void(0)" class="txt"> usb快速充电线</a>
-                            <div class="info-box"><span class="info-box-price">¥ 8.90</span> <span class="info-original-price">￥ 299.00</span></div>
-                        </li>
-                        <li class="plus_icon"><i>=</i></li>
-                        <li class="total_price">
-                            <p class="combo_price"><span class="c-title">套餐价:</span><span>￥35.00</span></p>
-                            <p class="save_all">共省:<span>￥463.00</span></p>
-                            <a href="javascript:void(0)" class="buy_now">立即购买</a>
-                        </li>
-                        <li class="plus_icon"><i class="mr-icon-angle-right"></i></li>
-                    </ul>
+      </div>
+      <div>
+        <ol class="mr-breadcrumb mr-breadcrumb-slash">
+          <li>
+            <a href="javascript:void(0)">首页</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">分类</a>
+          </li>
+          <li class="mr-active">内容</li>
+        </ol>
+        <div class="scoll">
+          <section class="slider">
+            <div class="flexslider">
+              <ul class="slides">
+                <li><img src="images/01.jpg" title="pic" /></li>
+                <li><img src="images/02.jpg" /></li>
+                <li><img src="images/03.jpg" /></li>
+              </ul>
+            </div>
+          </section>
+        </div>
+        <div class="item-inform">
+          <div id="clearcontent" class="clearfixLeft">
+            <div class="box">
+              <div
+                class="enlarge"
+                @mouseenter="mouseEnterShow"
+                @mouseleave="mouseLeaveHiden"
+                @mousemove="mouseMovePic"
+              >
+                <!-- 小图 -->
+                <img src="images/01.jpg" title="细节展示放大镜特效" />
+                <!-- style="display: none; left: 0px; top: 198px;" -->
+                <span class="tool"></span>
+                <!-- 大图 -->
+                <div class="bigbox" style="display: none">
+                  <img
+                    src="images/01.jpg"
+                    class="bigimg"
+                    style="left: 0px; top: -396px"
+                  />
                 </div>
+              </div>
+              <ul id="thumblist" class="tb-thumb">
+                <li class="selected">
+                  <div class="tb-pic tb-s40">
+                    <a href="javascript:void(0)"
+                      ><img
+                        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAA2ADYDAREAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAABQcEBgMICQD/xAA/EAABAgQEAgUGCwkAAAAAAAABAgMABAURBgcSMRMhCEFRYbEiIzJxkdEUFRczVWJzgZOhwRZSY3KDkpSi8P/EABkBAAMBAQEAAAAAAAAAAAAAAAIDBAEABf/EACQRAAICAQMEAwEBAAAAAAAAAAABAgMRBBIhEzFBURQiYXEy/9oADAMBAAIRAxEAPwDaHHdRn5JIEo+pkBAVdIFySTv7BCbpOK4Dgsi7xJmLWKDSH6nOVF0MMAa9LSFHmQBuO0iEQnZJ4TDcYpZZiw5mXV69Sk1Kn1ZS5ZXK/Cbuk9hsDYwVjsrltbMhtmspGOp5rt0ucTJ1DEgamEAF9KmlXSCLi2lFusQMZzl5CcUgFXc+qXT5dlS8YstKXyN5d0i4HO3m9o1u3wYlEjS/SDor7TjjOM3HEtgFwoknCE3NuZ4faR7YHNxuID6y0rasRYKkKyZgTKZlBW27o060X8k2sLcrdQiqltx+3cVNJPgg5jfNgfUHiqF3hQFRiWSl5+nOSk0wl9ly2ptQJBsb9USqTi8oZhNYYMpFKkKJSkyVMk25NkFSuE3ewJPf90ZKTk8s1JLhCxzTY14pmngLgpaSfXwkRVpVngKS+uRNZh6VTUqxe2lCle02/SL+nwISTKqJUkGwBHdE9kcBqDOmPRkGnInCif3ae0P9RAU/5FzWGFsxbaR28MeKoC82Au3ktH53Xp+ra8SDUDKiGgnzWvbnqtGM1CtxyELxXUJZ0hLb7bAClbJWGk6T6twe4kxbpfATX1ERj5K/2ieZcSUrZSlsg9u58Y9qEE0Ssr6SpBMT2xWMBwkzpX0ZiDkZhUjrkG7/ANoiCvs/6wZ9wrmJ6I+zHiqF3nQF5MC6DErHIET/ACBgGahXZlMVGn4nVUXJc/A5ttrhLUm6HNLaUkHvuDy364q0+2XHlBZcUKyuoomI5mYW1Mpp9SbWUpbmFeaeA5ABzqNtte2xUer1Y3SgsS5QGxS7FUqdEmZF0szjTsq5a4DiSLjqI7R3jlCLbvK5CjUmdFejQnTkbhVN72kGxft5CEVPMck9ixLAUzD6vs0+KoXebAXj/omJWNQHqJ3gGagz8WydVw4mTn5ZExLONgKQofmOw94hEpShPdEdFJxwzU/NrLWq4MmnKlK8Seori7h+11sEn0XLfkrY920V06zq8PhmShs5XYpbNTmX5VMiHFvNk2Q16ViewfpBTab3MKM+MHRjo7Sz0nk1hyUmWy2+xKJbcQd0qAsRFGmkpVqS8kdyam0ybmGfKt/CT4qjLwYC6mVeSecSDkB5/mDaBNRZKe6huhI1Xvw+XOJ7U+cIdBoGzgYmmVsvtIcacSULbWApKgdwQdwYj2zznDHpx9ixp+UmH6Fi13EVObW42ebEmrykyyzupPWR2A+jz35W3U2X2V7Ev6Fp41Qnls2gymBGB5QEEEKWLH+Yx7ugTWnin6PN1LTtk0ScY4emay3eUnES7hQEHiJJFgSQRb1n/t3WV70KjLBRpjK3EDt7YglE/wBFXvhPxX7D6v4Q1ZQYiUeeJpT/AB1e+O+L+m9X8LHLZez6KW1KO1SXWtKQlSw2QDbuvHPTPGMndUx/JvN/SbH4Z98D8V+zeqj3ybzf0mx+GffHfEfs7qr0XXC9JFForVP43HKCpRXp03JJO33xVXDZHAqUtzyf/9k="
+                    /></a>
+                  </div>
+                </li>
+                <li class="">
+                  <div class="tb-pic tb-s40">
+                    <a href="javascript:void(0)"
+                      ><img
+                        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAA2ADYDAREAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAABggABQQHCQID/8QAQBAAAQIEAgYFBgwHAAAAAAAAAQIDAAQFEQYhBxITMUFhFDZRcbMIIiMycnQWMzQ3QkVSYmR1gpGSlKGyweHx/8QAGgEAAwEBAQEAAAAAAAAAAAAAAAIDBAUBBv/EACURAAICAQQCAgIDAAAAAAAAAAABAgMRBBIxMiFBE1EUM2Fxgf/aAAwDAQACEQMRAD8AcuAAY0rVVVE0e1erJQpzorSVlCVapUNdNxfhcZROzqxocixL01obdWTR5wpKgQjpKNVIG8D0d7HmSey0QVOSrngEK/5R8vI1lbBodScDYF0icbCTcXt8Xfj2wPSt+wVqXojflK08ygmDQ1IXc+iM+dcW45N2z74X8V/Z78y+h48MvLmcN0yYcUpS3ZNpaio3JJQCbmNcOqIS5ZYQx4SAAG0+EDQ9iMkXAlhl+tMJZ1Hr7CQVSV2Tyk7xYKB7QcwYpRHdDI9iwzTeIFofr88pRt6ZSQeQNv8AEPhixSZhqlPMKkkKHKJsZ14WUdc8G54Qox/AMeGIWvqicuWWsMKSAAG0+/M9iPd8mH96YSzqPDsJpPt7allRFnZVBUBbNbeZP8OZ7jyi2meeC1iF/mxtHluK81alEkRtlXFmc8JdKUlJHCMtiKRm8YZ1ywbb4IUa27oDHhiM8OqElyy1hhSQABOnVh2Z0TV+WYTrOvMIbQL2uouJAH9Yna0oNsevzISaqz0xRJWcZqMssLYSUrbX5jiFbsjwOfMcjDUYa3RZfc14YBVLD9NrIE1h9/bOr9eRUnVeSfuDcsckm/K27T8/qfj+fQfGnwCs7SNjtErWWlo9ZKwQQey0ZrLcMPhWOTrDg3qhRvcGPDEEOqM8uWWsMKSAAW0r9Qp/22PGREdR+qRSrujRWmHAMjjPDzzBV0Oo2AZmkpucjcJWOKbjvHDsPDp1c9PxwdKVSs/sT/ElGrWEa05Sa3Kql5hBuhW9Lib5KQriP+GxjqwvVq3QZmacHiR85mdmqslLCtebfUNVGWss8ucS8QeeCjluWDqbg3qhRvcGPDEdCHVGCXLLWGFJAALaV+oU/wC2x46IjqP1SKVd0a+qrraUNjWUSSSbDjb/AHHzNskkjsVp+QJx3hKi4yo66bWZfaC5U08nJxlR+kg8O7ceN4nTfOmW6I86ozjhmrsHaK5fBLNXm6lOJnJ0tOpkng0dUN6p3diyN/ZuGVyaazWO9xivC8f6w02nVabfljt4M6n0b8vY8MR9VDqjhS5ZbQwpIAKTHTCJnCs6w4lC0FKVKStNwQlQUQR3CEsWYtDQeGaJrBw8p0BdHl1aotnLNmOfKMn7NUWivBw0fqSW/lW4XZL7PcoyZaTw/MqCEUWSuftSrcChJ+w3IYnDqA1QpFjfsZdtsm2RKUgZftHTisRSMbeXkz4Y8P/Z"
+                    /></a>
+                  </div>
+                </li>
+                <li class="">
+                  <div class="tb-pic tb-s40">
+                    <a href="javascript:void(0)"
+                      ><img
+                        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAA2ADYDAREAAhEBAxEB/8QAGwABAAEFAQAAAAAAAAAAAAAAAAYBAwQFBwj/xAAsEAABAwMBBgQHAAAAAAAAAAABAAIDBAUREgYHITFBQhMiUWEUFRYyQ3KR/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAEDAgT/xAAhEQEAAgIBAwUAAAAAAAAAAAAAAQIDEmEhMZERQVFxof/aAAwDAQACEQMRAD8A9loCAgICAgICAgICAgICAgICAgICAg5NDQ7wJagOuNPeZJo2FjnR3BsUEruPnDGPBx/OHReKaZp7totSOyrLTt8dOuBw+7VmrmP6/n9efr7KaZefK7VZYsO0U1M2OspJ5XYGsfFSFpcOoBkPVSceWfb9WL1hErHsbvVdeT9Ty2avtAD9MMEUzZCe3i6Yge/NdWxT6dK9ftIv8yldXadrA1gpKOpBDxr11shyzqBiUYPLipFMvPk2q1sti2/lcwP+Ywsy7Waa4SMcR26S6Uge+QU0y8+Taq7BRb0IfDprSbjBoa4yT3OqinEmSMAeZxzz7R1WlK5olzM0mHXF6mQgICAgICAgICAgICAgICAgICAgIP/Z"
+                    /></a>
+                  </div>
+                </li>
+              </ul>
             </div>
             <div class="clear"></div>
-        </div>
-        <div class="introduce clearfix">
-            <div class="browse">
-                <div class="mc">
-                    <ul>
-                        <div class="mt">
-                            <h2>看了又看</h2></div>
-                        <li class="first">
-                            <div class="p-img">
-                                <a href="javascript:void(0)"><img src="images/shopcartImg.jpg"></a>
-                            </div>
-                            <div class="p-name">
-                                <a href="javascript:void(0)"> 华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待 </a>
-                            </div>
-                            <div class="p-price"><strong>￥399.00</strong></div>
-                        </li>
-                        <li class="first">
-                            <div class="p-img">
-                                <a href="javascript:void(0)"><img src="images/shopcartImg.jpg"></a>
-                            </div>
-                            <div class="p-name">
-                                <a href="javascript:void(0)"> 华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待 </a>
-                            </div>
-                            <div class="p-price"><strong>￥399.00</strong></div>
-                        </li>
-                        <li class="first">
-                            <div class="p-img">
-                                <a href="javascript:void(0)"><img src="images/shopcartImg.jpg"></a>
-                            </div>
-                            <div class="p-name">
-                                <a href="javascript:void(0)"> 华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待 </a>
-                            </div>
-                            <div class="p-price"><strong>￥399.00</strong></div>
-                        </li>
-                    </ul>
-                </div>
+          </div>
+          <div class="clearfixRight">
+            <div class="tb-detail-hd">
+              <h1>华为 荣耀 畅玩4X 白色 移动4G手机</h1>
             </div>
-            <div class="introduceMain">
-                <div data-mr-tabs="" class="mr-tabs">
-                    <ul class="mr-avg-sm-3 mr-tabs-nav mr-nav mr-nav-tabs">
-                        <li id="infoTitle" class="mr-active">
-                            <a><span class="index-needs-dt-txt">宝贝详情</span></a>
-                        </li>
-                        <li id="commentTitle" class="">
-                            <a><span class="index-needs-dt-txt">全部评价</span></a>
-                        </li>
-                        <li id="youLikeTitle" class="">
-                            <a><span class="index-needs-dt-txt">猜你喜欢</span></a>
-                        </li>
-                    </ul>
-
-                    <!-- 宝贝详情 -->
-                    <div class="mr-tabs-bd" style="display: block;">
-                        <div id="info" class="mr-tab-panel">
-                            <div class="J_Brand">
-                                <div class="attr-list-hd tm-clear">
-                                    <h4>产品参数：</h4></div>
-                                <div class="clear"></div>
-                                <ul id="J_AttrUL">
-                                    <li title="">商品名称: 华为荣耀畅玩4X</li>
-                                    <li title="">商品编号: 1684485</li>
-                                    <li title="">商品毛重: 157.00g</li>
-                                    <li title="">商品产地: 中国大陆</li>
-                                    <li title="">系统: 安卓（Android）</li>
-                                    <li title="">运行内存: 3GB</li>
-                                    <li title="">像素: 1600万以上</li>
-                                    <li title="">电池容量： 3000mAh-3999mAh</li>
-                                    <li title="">机身颜色： 金色 </li>
-                                </ul>
-                                <div class="clear"></div>
-                            </div>
-                            <div class="details">
-                                <div class="attr-list-hd after-market-hd">
-                                    <h4>商品细节</h4></div>
-                                <div class="twlistNews">
-                                    <img src="images/tw1.jpg">
-                                    <img src="images/tw2.jpg">
-                                    <img src="images/tw3.jpg">
-                                    <img src="images/tw4.jpg">
-                                    <img src="images/tw5.jpg"></div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
+            <div class="tb-detail-list">
+              <div class="tb-detail-price">
+                <li class="price iteminfo_price">
+                  <dt>促销价</dt>
+                  <dd><em>¥</em><b class="sys_item_price">499.00</b></dd>
+                </li>
+                <li class="price iteminfo_mktprice">
+                  <dt>原价</dt>
+                  <dd><em>¥</em><b class="sys_item_mktprice">599.00</b></dd>
+                </li>
+                <div class="clear"></div>
+              </div>
+              <dl class="iteminfo_parameter freight">
+                <dt>配送至</dt>
+                <div class="iteminfo_freprice">
+                  <div class="mr-form-content address">
+                    <select data-mr-selected="">
+                      <option value="a">浙江省</option>
+                      <option value="b">吉林省</option>
+                    </select>
+                    <select data-mr-selected="">
+                      <option value="a">温州市</option>
+                      <option value="b">长春市</option>
+                    </select>
+                    <select data-mr-selected="">
+                      <option value="a">瑞安区</option>
+                      <option value="b">南关区</option>
+                    </select>
+                  </div>
+                  <div class="pay-logis">
+                    快递<b class="sys_item_freprice">10</b>元
+                  </div>
+                </div>
+              </dl>
+              <div class="clear"></div>
+              <ul class="tm-ind-panel">
+                <li class="tm-ind-item tm-ind-sellCount canClick">
+                  <div class="tm-indcon">
+                    <span class="tm-label">月销量</span
+                    ><span class="tm-count">1015</span>
+                  </div>
+                </li>
+                <li class="tm-ind-item tm-ind-sumCount canClick">
+                  <div class="tm-indcon">
+                    <span class="tm-label">累计销量</span
+                    ><span class="tm-count">6015</span>
+                  </div>
+                </li>
+                <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
+                  <div class="tm-indcon">
+                    <span class="tm-label">累计评价</span
+                    ><span class="tm-count">640</span>
+                  </div>
+                </li>
+              </ul>
+              <div class="clear"></div>
+              <dl class="iteminfo_parameter sys_item_specpara">
+                <dt class="theme-login">
+                  <div class="cart-title">
+                    可选规格<span class="mr-icon-angle-right"></span>
+                  </div>
+                </dt>
+                <dd>
+                  <div class="theme-popover-mask"></div>
+                  <div class="theme-popover">
+                    <div class="theme-span"></div>
+                    <div class="theme-poptit">
+                      <a href="javascript:;" title="关闭" class="close">×</a>
                     </div>
-
-                    <!-- 全部评价 -->
-                    <div class="mr-tabs-bd" style="display: none;">
-                        <div id="comment" class="mr-tab-panel">
-                            <div class="actor-new">
-                                <div class="rate"><strong>100<span>%</span></strong><br> <span>好评度</span></div>
-                                <dl><dt>买家印象</dt>
-                                    <dd class="p-bfc"><q class="comm-tags"><span>性价比高</span><em>(2177)</em></q><q class="comm-tags"><span>系统流畅</span><em>(1860)</em></q><q class="comm-tags"><span>外观漂亮(</span><em>(1823)</em></q><q class="comm-tags"><span>功能齐全</span><em>(1689)</em></q><q class="comm-tags"><span>支持国产机</span><em>(1488)</em></q><q class="comm-tags"><span>反应快</span><em>(1392)</em></q><q class="comm-tags"><span>照相不错</span><em>(1119)</em></q><q class="comm-tags"><span>通话质量好</span><em>(865)</em></q><q class="comm-tags"><span>国民手机</span><em>(831)</em></q></dd>
-                                </dl>
-                            </div>
-                            <div class="clear"></div>
-                            <div class="tb-r-filter-bar">
-                                <ul class=" tb-taglist mr-avg-sm-4">
-                                    <li class="tb-taglist-li tb-taglist-li-current">
-                                        <div class="comment-info"><span>全部评价</span><span class="tb-tbcr-num">(32)</span></div>
-                                    </li>
-                                    <li class="tb-taglist-li tb-taglist-li-1">
-                                        <div class="comment-info"><span>好评</span><span class="tb-tbcr-num">(32)</span></div>
-                                    </li>
-                                    <li class="tb-taglist-li tb-taglist-li-0">
-                                        <div class="comment-info"><span>中评</span><span class="tb-tbcr-num">(32)</span></div>
-                                    </li>
-                                    <li class="tb-taglist-li tb-taglist-li--1">
-                                        <div class="comment-info"><span>差评</span><span class="tb-tbcr-num">(32)</span></div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="clear"></div>
-                            <ul class="mr-comments-list mr-comments-list-flip">
-                                <li class="mr-comment" style="display: block;">
-                                    <a href="javascript:void(0)"><img src="data:image/jpeg;base64,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" class="mr-comment-avatar"></a>
-                                    <div class="mr-comment-main">
-                                        <header class="mr-comment-hd">
-                                            <div class="mr-comment-meta">
-                                                <a href="#link-to-user" class="mr-comment-author">b***1 (匿名)</a> 评论于 <time datetime="">2015年11月02日 17:46</time></div>
-                                        </header>
-                                        <div class="mr-comment-bd">
-                                            <div data-id="255776406962" class="tb-rev-item ">
-                                                <div class="J_TbcRate_ReviewContent tb-tbcr-content "> 帮朋友买的，没拆开来看，据说还不错，很满意！ </div>
-                                                <div class="tb-r-act-bar"> 颜色分类：金 电信4G </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mr-comment" style="display: block;">
-                                    <a href="javascript:void(0)"><img src="data:image/jpeg;base64,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" class="mr-comment-avatar"></a>
-                                    <div class="mr-comment-main">
-                                        <header class="mr-comment-hd">
-                                            <div class="mr-comment-meta">
-                                                <a href="#link-to-user" class="mr-comment-author">b***1 (匿名)</a> 评论于 <time datetime="">2015年11月02日 17:46</time></div>
-                                        </header>
-                                        <div class="mr-comment-bd">
-                                            <div data-id="255776406962" class="tb-rev-item ">
-                                                <div class="J_TbcRate_ReviewContent tb-tbcr-content "> 帮朋友买的，没拆开来看，据说还不错，很满意！ </div>
-                                                <div class="tb-r-act-bar"> 颜色分类：金 电信4G </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mr-comment" style="display: block;">
-                                    <a href="javascript:void(0)"><img src="data:image/jpeg;base64,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" class="mr-comment-avatar"></a>
-                                    <div class="mr-comment-main">
-                                        <header class="mr-comment-hd">
-                                            <div class="mr-comment-meta">
-                                                <a href="#link-to-user" class="mr-comment-author">b***1 (匿名)</a> 评论于 <time datetime="">2015年11月02日 17:46</time></div>
-                                        </header>
-                                        <div class="mr-comment-bd">
-                                            <div data-id="255776406962" class="tb-rev-item ">
-                                                <div class="J_TbcRate_ReviewContent tb-tbcr-content "> 帮朋友买的，没拆开来看，据说还不错，很满意！ </div>
-                                                <div class="tb-r-act-bar"> 颜色分类：金 电信4G </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mr-comment" style="display: none;">
-                                    <a href="javascript:void(0)"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQICAQECAQEBAgICAgICAgICAQICAgICAgICAgL/2wBDAQEBAQEBAQEBAQECAQEBAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgL/wAARCAAoACgDAREAAhEBAxEB/8QAGgAAAwADAQAAAAAAAAAAAAAABwgJAQIFCv/EACsQAAEEAQMDAwQCAwAAAAAAAAMBAgQFBgcREgAIExQhQRUYIzEXMjNCUf/EABsBAAMBAQADAAAAAAAAAAAAAAYHCAQFAAMK/8QAMxEAAgEDAwMBBQgBBQAAAAAAAQIDBAURAAYSBxMhMRQiQVKBCBUyQlFhYnFDFjRyocH/2gAMAwEAAhEDEQA/APTB18y+rw0EdeMxvcKw5lvjd3BqbEFpB9QORHgzZcqtM9wDthQ5qOQj2lIFzlRqrwG7ZW/2Qn2nbaO6XVaW4QSS0zq3lCwCNjILFceMZwCQCcaYfTWw23cF/ahu9vkraSSGTiVaSNElUBlMkkeCoKhlGSByK+D6EYaU90Ndekk0+ozq6hnxheWHkAGHj01sNCIJRGAR5HV1giORytV7hPaiuao9vGnbv+xZ6Nlms3Oup3JBjODInqc+MBlP9cgcA59dGG9ejtVbUhr9qiW500zcZKVir1EBxnkrAIJYj5AIUOpwCG/EWmp7+jyCP6qjt663j+yqavmAlsRF/XJQvXjv8b9AtRSVNI/Cqp3p3/R1Kn/sDSarrZcbZL2bjQy0Mvyyxsh+nIDP011+s+sOgzrjqi3S3D/qEQY5GQXMptRjsYq/i9Y8bzSJ0hv7fGjQxmKrU/u9rB7t58kIds2Q3y4rA5K0sI5ysPXiPAUfuxwo/TyfOMaPenWzjvK/eyTsYrXQIZ6p1/F2wQqxqfg8shVAfyqWfB44Mpr/AFSrMjyZ9JdZpU2mazEfMPW2F3XGyUrWjEYyRql0lTRIA2lYrWCExjRvZ7Izi1KFprM9BbFkorS9PbEwveELCMk+MGXjxyWBHluTEeSTquLZSWa1slrtxgo2gU8aaJkVgg/O0YPN2IILyOGOTknJycdenXb1pgmqcQFvIm6d51VybajMD6i3HL2BZOhuM1SAj28SFJIiBKxjvxnbxI1F2Rdt08u1gkemWK8WuSOnqgeBmiePljwWjZlHlSfxKfB8a4tZR2Hc1JUUVUlPdqYe64DJIYywyCGUlonx5VgVb4jxqtujepQNUcKiX7hDiW8WQapv4I3bsjW0Pj5Hh39/SnA8EgW/ujJKNVVc13U97hs72S5S0fLnCwDxN80bemf5Kcq37jPoRqPd+7Sk2duCa2BzNRTIs9NIRgvBJnAb4c42DRPj1ZOQGGGle71HkDYaZyDkUVYweVoQjke4TJiArCtcrRscqvSGOWvsiuVEXZF6N+miq7XVAR3m7OP+JLA/TkV04/s+qklNu+KNedWxoiB4yU5zKQCSBgyNGPJAzjJ1BjVbA8izjvL7d9QMCoa2ThuLkyCxyzNaqjNDtZM01eGrPVZFblYMhYAoMGudEjmGitfPkOY56E2ZYllv9Dbekm79s3OqUXCaZWpYmbJZZO0cxDz7oZHJxjByT6+Srcuxr5S9X9obiegelpoaKZalgUK+EqBHyaNmVixlQDychQPynFHukRpn6nBoZguQab93HcLmGTUdbg+n19CqqLFj1VGevrL8i2Um5jz3grxk+p2vGXMQ5xjTjyRHo3/Z8b0v1Dufp50+tlLVLV3i2I/fHLLxKidsiQkkjkeOMn3sZHppY9O9i32j371LuNLb3NuuZgliAKRo5ZubMhdkTC5cHz4Z8erav92V+d8DUszXOdAJfUaBfsqMfJbRhUzho5EX/C+Pv7f8RU36jLqTxFXa1/yLE+f65nH/ALjQP9oLtrU7RjIxUrS1HIfEL7Q3HOP5B8fU6YXWrS6PqvhZ6NhxwbuBJFbY5ZkZzZDtYyORozonu6FIA8oDInvwPyTdzW9CO3b09iuUdWFMkDApKmcckPrj+SnDL+4x6E6VvT/eUuyr/HcjEam31KGCrhBwZIXwcr8O5EwWSPPjkuD4J1KDM8fzjTuVKfJw6tdl1OCY+rx/M330fDMlP41aMZpmPWkIk6vI5GqORGktIF/Hnx/IJae2JubbYutBX3Kih3FYmYe0QOTzVWBGfcZJUeMnlxDANj4jB1WNVNTb0sUjbW3S9G1QFKVdKYmqKchgxSWGZJRGxAKskkRyPKEjDaXb7ju4DzpD+zrSf1qkUfNbHV9Ktqou3ldP/lTxen3TfdDKvH436o7746Gce9/pG3mL1/3Vdzx+na73LP7Y+usp6WXP2UyD7Qd1M4GeH3Tb8lvl5ezfTljH00yOEYpnWpE2P6DEa5uU3AoRberxZ14XBMVO4fEowT7+xmEgVgnuLuQ8kkmS5i8UevjGya99bo24LpX19BRw7fsgdvZqaPPMoAAPDs8ru+OR5MwQsfQZ1ohrKLY9hhbde5pKySnVuc9QYhVVTZLBIoIUiVmwQo4RqqjDSMB72qzaRabwtK8Jr8XjnSbN8h7G8tPH43WdzOf5ZknjuqsA3ZggtVVVoY7EVVXdVmK+3eW93KaukXgjYWNM54Rr4Vf7/M36sT8NSPvndlRvPcNVeZYvZqchYqeHOezTxjEaZ+LHy7t8XZiPGBom7/Px+9+uPoQ1MLXXPrfXHJLHBcfNJHh1NIjxwshojTXVlJtQUsCU97EVxvU2RlZDCi8VEJxnsV6tRjx2Zt1bZ92M0Pfvd5dUjXySnIcgir82MBj68iFHj1sHpxtig6d2il3HdYka/XFHZjJ5WnhWFqiVACQF7UKgzvjPcYRqQoPI16f9mXZ5c4FnthqBrblGEZvgc/Jq25xo+RBE4R6174lPIqq2a97r8J3hYRWg3VSyHh4jaxrluLbux+j9dtvcFVuLdL2HcNgeqinpzJCrK0R4QNCjxl6gSEBj22zydkwoUEq7c3Wvrxb917Yp9r7Go9xbZ3HHRzQVIpZXDrKOdQk0sbqlK0YYoDIuAiK+XZiAI+3bU6Xphf0unltNNNwrI2RS0siVxU1aafNkVgJjSu2VkR1pGICQNVVglUZmcEUu8IbvsUF2grrnRrxr7eziQD/KigPkj5u2Qy+hPlTn3dMfqns+Dd9suG6KGnWnv9oLrUImeMyxRrM0ePILrC4kiYAM45I3L3MUu6TepI1//9k=" class="mr-comment-avatar"></a>
-                                    <div class="mr-comment-main">
-                                        <header class="mr-comment-hd">
-                                            <div class="mr-comment-meta">
-                                                <a href="#link-to-user" class="mr-comment-author">b***1 (匿名)</a> 评论于 <time datetime="">2015年11月02日 17:46</time></div>
-                                        </header>
-                                        <div class="mr-comment-bd">
-                                            <div data-id="255776406962" class="tb-rev-item ">
-                                                <div class="J_TbcRate_ReviewContent tb-tbcr-content "> 帮朋友买的，没拆开来看，据说还不错，很满意！ </div>
-                                                <div class="tb-r-act-bar"> 颜色分类：金 电信4G </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mr-comment" style="display: none;">
-                                    <a href="javascript:void(0)"><img src="data:image/jpeg;base64,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" class="mr-comment-avatar"></a>
-                                    <div class="mr-comment-main">
-                                        <header class="mr-comment-hd">
-                                            <div class="mr-comment-meta">
-                                                <a href="#link-to-user" class="mr-comment-author">b***1 (匿名)</a> 评论于 <time datetime="">2015年11月02日 17:46</time></div>
-                                        </header>
-                                        <div class="mr-comment-bd">
-                                            <div data-id="255776406962" class="tb-rev-item ">
-                                                <div class="J_TbcRate_ReviewContent tb-tbcr-content "> 帮朋友买的，没拆开来看，据说还不错，很满意！ </div>
-                                                <div class="tb-r-act-bar"> 颜色分类：金 电信4G </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                    <div class="theme-popbod dform">
+                      <form
+                        name="loginform"
+                        action=""
+                        method="post"
+                        class="theme-signin"
+                        @submit.prevent
+                      >
+                        <div class="theme-signin-left">
+                          <div class="theme-options">
+                            <div class="cart-title">颜色</div>
+                            <ul>
+                              <li class="sku-line selected">荣耀金<i></i></li>
+                              <li class="sku-line">冰河银<i></i></li>
+                              <li class="sku-line">雅典灰<i></i></li>
                             </ul>
-                            <div class="clear"></div>
-                            <ul class="mr-pagination mr-pagination-right">
-                                <li class="mr-disabled">
-                                    <a href="javascript:void(0)">«</a>
-                                </li>
-                                <li class="mr-active">
-                                    <a href="javascript:void(0)">1</a>
-                                </li>
-                                <li class="">
-                                    <a href="javascript:void(0)">2</a>
-                                </li>
-                                <li class="">
-                                    <a href="javascript:void(0)">»</a>
-                                </li>
+                          </div>
+                          <div class="theme-options">
+                            <div class="cart-title">套装</div>
+                            <ul>
+                              <li class="sku-line selected">保护套装<i></i></li>
+                              <li class="sku-line">原厂电源<i></i></li>
+                              <li class="sku-line">存储套装<i></i></li>
                             </ul>
-                            <div class="clear"></div>
-                            <div class="tb-reviewsft">
-                                <div class="tb-rate-alert type-attention">购买前请查看该商品的
-                                    <a href="javascript:void(0)">购物保障</a>，明确您的售后保障权益。</div>
+                          </div>
+                          <div class="theme-options">
+                            <div class="cart-title number">数量</div>
+                            <dd>
+                              <!-- 商品数量减少 -->
+                              <input
+                                id="min"
+                                type="button"
+                                value="-"
+                                @click="reduceCount"
+                                class="mr-btn mr-btn-default"
+                              />
+                              <!-- 总共购买数量 -->
+                              <input
+                                id="text_box"
+                                type="text"
+                                :value="buyCount"
+                                @blur="changCount($event)"
+                                @keyup.enter="changCount($event)"
+                                style="width: 30px"
+                              />
+                              <!-- 商品数量增加 -->
+                              <input
+                                id="add"
+                                type="button"
+                                value="+"
+                                @click="addCount"
+                                class="mr-btn mr-btn-default"
+                              /><span id="Stock" class="tb-hidden"
+                                >库存<span class="stock">1000</span>件</span
+                              >
+                            </dd>
+                          </div>
+                          <div class="clear"></div>
+                          <div class="btn-op">
+                            <div class="btn mr-btn mr-btn-warning">确认</div>
+                            <div class="btn close mr-btn mr-btn-warning">
+                              取消
                             </div>
+                          </div>
                         </div>
-                    </div>
-                    
-                    <!-- 猜你喜欢 -->
-                    <div class="mr-tabs-bd" style="display: none;">
-                        <div id="youLike" class="mr-tab-panel">
-                            <div class="like">
-                                <ul class="mr-avg-sm-2 mr-avg-md-3 mr-avg-lg-4 boxes">
-                                    <li style="display: block;">
-                                        <div class="i-pic limit"><img src="images/shopcartImg.jpg">
-                                            <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
-                                            <p class="price fl"><b>¥</b><strong>498.00</strong></p>
-                                        </div>
-                                    </li>
-                                    <li style="display: block;">
-                                        <div class="i-pic limit"><img src="images/shopcartImg.jpg">
-                                            <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
-                                            <p class="price fl"><b>¥</b><strong>498.00</strong></p>
-                                        </div>
-                                    </li>
-                                    <li style="display: block;">
-                                        <div class="i-pic limit"><img src="images/shopcartImg.jpg">
-                                            <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
-                                            <p class="price fl"><b>¥</b><strong>498.00</strong></p>
-                                        </div>
-                                    </li>
-                                    <li style="display: block;">
-                                        <div class="i-pic limit"><img src="images/shopcartImg.jpg">
-                                            <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
-                                            <p class="price fl"><b>¥</b><strong>498.00</strong></p>
-                                        </div>
-                                    </li>
-                                    <li style="display: none;">
-                                        <div class="i-pic limit"><img src="images/shopcartImg.jpg">
-                                            <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
-                                            <p class="price fl"><b>¥</b><strong>498.00</strong></p>
-                                        </div>
-                                    </li>
-                                    <li style="display: none;">
-                                        <div class="i-pic limit"><img src="images/shopcartImg.jpg">
-                                            <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
-                                            <p class="price fl"><b>¥</b><strong>498.00</strong></p>
-                                        </div>
-                                    </li>
-                                    <li style="display: none;">
-                                        <div class="i-pic limit"><img src="images/shopcartImg.jpg">
-                                            <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
-                                            <p class="price fl"><b>¥</b><strong>498.00</strong></p>
-                                        </div>
-                                    </li>
-                                    <li style="display: none;">
-                                        <div class="i-pic limit"><img src="images/shopcartImg.jpg">
-                                            <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
-                                            <p class="price fl"><b>¥</b><strong>498.00</strong></p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="clear"></div>
-                            <ul class="mr-pagination mr-pagination-right">
-                                <li class="mr-disabled">
-                                    <a href="javascript:void(0)">«</a>
-                                </li>
-                                <li class="mr-active">
-                                    <a href="javascript:void(0)">1</a>
-                                </li>
-                                <li class="">
-                                    <a href="javascript:void(0)">2</a>
-                                </li>
-                                <li class="">
-                                    <a href="javascript:void(0)">»</a>
-                                </li>
-                            </ul>
-                            <div class="clear"></div>
+                        <div class="theme-signin-right">
+                          <div class="img-info"><img src="" /></div>
+                          <div class="text-info">
+                            <span class="J_Price price-now">¥39.00</span
+                            ><span id="Stock" class="tb-hidden"
+                              >库存<span class="stock">1000</span>件</span
+                            >
+                          </div>
                         </div>
+                      </form>
                     </div>
-
+                  </div>
+                </dd>
+              </dl>
+              <div class="clear"></div>
+              <div class="shopPromotion gold">
+                <div class="hot">
+                  <dt class="tb-metatit">店铺优惠</dt>
+                  <div class="gold-list">
+                    <p>购物满2件打8折，满3件7折</p>
+                  </div>
                 </div>
                 <div class="clear"></div>
+              </div>
             </div>
+            <div class="pay">
+              <div class="pay-opt">
+                <a href="index.html"
+                  ><span class="mr-icon-home mr-icon-fw">首页</span></a
+                >
+                <a><span class="mr-icon-heart mr-icon-fw">收藏</span></a>
+              </div>
+              <li>
+                <div class="clearfix tb-btn tb-btn-buy theme-login">
+                  <a id="LikBuy" title="点此按钮到下一步确认购买信息"
+                    >立即购买</a
+                  >
+                </div>
+              </li>
+              <li>
+                <div class="clearfix tb-btn tb-btn-basket theme-login">
+                  <a id="LikBasket" title="加入购物车"><i></i>加入购物车</a>
+                </div>
+              </li>
+            </div>
+          </div>
+          <div class="clear"></div>
         </div>
-         <!-- 底部 -->
-        <Footer></Footer> 
+      </div>
+      <div>
+        <div class="match">
+          <div class="match-title">优惠套装</div>
+          <div class="match-comment">
+            <ul class="like_list">
+              <li>
+                <div class="s_picBox">
+                  <a href="javascript:void(0)" class="s_pic"
+                    ><img
+                      src="data:image/jpeg;base64,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"
+                  /></a>
+                </div>
+                <a target="_blank" href="javascript:void(0)" class="txt"
+                  >防爆玻璃钢化膜</a
+                >
+                <div class="info-box">
+                  <span class="info-box-price">¥ 29.90</span>
+                  <span class="info-original-price">￥ 199.00</span>
+                </div>
+              </li>
+              <li class="plus_icon"><i>+</i></li>
+              <li>
+                <div class="s_picBox">
+                  <a href="javascript:void(0)" class="s_pic"
+                    ><img
+                      src="data:image/jpeg;base64,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"
+                  /></a>
+                </div>
+                <a target="_blank" href="javascript:void(0)" class="txt">
+                  usb快速充电线</a
+                >
+                <div class="info-box">
+                  <span class="info-box-price">¥ 8.90</span>
+                  <span class="info-original-price">￥ 299.00</span>
+                </div>
+              </li>
+              <li class="plus_icon"><i>=</i></li>
+              <li class="total_price">
+                <p class="combo_price">
+                  <span class="c-title">套餐价:</span><span>￥35.00</span>
+                </p>
+                <p class="save_all">共省:<span>￥463.00</span></p>
+                <a href="javascript:void(0)" class="buy_now">立即购买</a>
+              </li>
+              <li class="plus_icon"><i class="mr-icon-angle-right"></i></li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="introduce clearfix">
+        <div class="browse">
+          <div class="mc">
+            <ul>
+              <div class="mt">
+                <h2>看了又看</h2>
+              </div>
+              <li class="first">
+                <div class="p-img">
+                  <a href="javascript:void(0)"
+                    ><img src="images/shopcartImg.jpg"
+                  /></a>
+                </div>
+                <div class="p-name">
+                  <a href="javascript:void(0)">
+                    华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待
+                  </a>
+                </div>
+                <div class="p-price"><strong>￥399.00</strong></div>
+              </li>
+              <li class="first">
+                <div class="p-img">
+                  <a href="javascript:void(0)"
+                    ><img src="images/shopcartImg.jpg"
+                  /></a>
+                </div>
+                <div class="p-name">
+                  <a href="javascript:void(0)">
+                    华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待
+                  </a>
+                </div>
+                <div class="p-price"><strong>￥399.00</strong></div>
+              </li>
+              <li class="first">
+                <div class="p-img">
+                  <a href="javascript:void(0)"
+                    ><img src="images/shopcartImg.jpg"
+                  /></a>
+                </div>
+                <div class="p-name">
+                  <a href="javascript:void(0)">
+                    华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待
+                  </a>
+                </div>
+                <div class="p-price"><strong>￥399.00</strong></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- 三栏列表 -->
+        <div class="introduceMain">
+          <div data-mr-tabs="" class="mr-tabs">
+            <ul class="mr-avg-sm-3 mr-tabs-nav mr-nav mr-nav-tabs">
+              <li id="infoTitle" :class="{ 'mr-active': currentIndex === 0 }">
+                <a
+                  ><span class="index-needs-dt-txt" @click="currentIndex = 0"
+                    >宝贝详情</span
+                  ></a
+                >
+              </li>
+              <li
+                id="commentTitle"
+                :class="{ 'mr-active': currentIndex === 1 }"
+              >
+                <a
+                  ><span class="index-needs-dt-txt" @click="currentIndex = 1"
+                    >全部评价</span
+                  ></a
+                >
+              </li>
+              <li
+                id="youLikeTitle"
+                :class="{ 'mr-active': currentIndex === 2 }"
+              >
+                <a
+                  ><span class="index-needs-dt-txt" @click="currentIndex = 2"
+                    >猜你喜欢</span
+                  ></a
+                >
+              </li>
+            </ul>
+
+            <!-- 宝贝详情 -->
+            <div class="mr-tabs-bd" v-show="currentIndex === 0">
+              <div id="info" class="mr-tab-panel">
+                <div class="J_Brand">
+                  <div class="attr-list-hd tm-clear">
+                    <h4>产品参数：</h4>
+                  </div>
+                  <div class="clear"></div>
+                  <ul id="J_AttrUL">
+                    <li title="">商品名称: 华为荣耀畅玩4X</li>
+                    <li title="">商品编号: 1684485</li>
+                    <li title="">商品毛重: 157.00g</li>
+                    <li title="">商品产地: 中国大陆</li>
+                    <li title="">系统: 安卓（Android）</li>
+                    <li title="">运行内存: 3GB</li>
+                    <li title="">像素: 1600万以上</li>
+                    <li title="">电池容量： 3000mAh-3999mAh</li>
+                    <li title="">机身颜色： 金色</li>
+                  </ul>
+                  <div class="clear"></div>
+                </div>
+                <div class="details">
+                  <div class="attr-list-hd after-market-hd">
+                    <h4>商品细节</h4>
+                  </div>
+                  <div class="twlistNews">
+                    <img src="images/tw1.jpg" />
+                    <img src="images/tw2.jpg" />
+                    <img src="images/tw3.jpg" />
+                    <img src="images/tw4.jpg" />
+                    <img src="images/tw5.jpg" />
+                  </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+
+            <!-- 全部评价 -->
+            <div class="mr-tabs-bd" v-show="currentIndex === 1">
+              <div id="comment" class="mr-tab-panel">
+                <div class="actor-new">
+                  <div class="rate">
+                    <strong>100<span>%</span></strong
+                    ><br />
+                    <span>好评度</span>
+                  </div>
+                  <dl>
+                    <dt>买家印象</dt>
+                    <dd class="p-bfc">
+                      <q class="comm-tags"
+                        ><span>性价比高</span><em>(2177)</em></q
+                      ><q class="comm-tags"
+                        ><span>系统流畅</span><em>(1860)</em></q
+                      ><q class="comm-tags"
+                        ><span>外观漂亮(</span><em>(1823)</em></q
+                      ><q class="comm-tags"
+                        ><span>功能齐全</span><em>(1689)</em></q
+                      ><q class="comm-tags"
+                        ><span>支持国产机</span><em>(1488)</em></q
+                      ><q class="comm-tags"
+                        ><span>反应快</span><em>(1392)</em></q
+                      ><q class="comm-tags"
+                        ><span>照相不错</span><em>(1119)</em></q
+                      ><q class="comm-tags"
+                        ><span>通话质量好</span><em>(865)</em></q
+                      ><q class="comm-tags"
+                        ><span>国民手机</span><em>(831)</em></q
+                      >
+                    </dd>
+                  </dl>
+                </div>
+                <div class="clear"></div>
+                <div class="tb-r-filter-bar">
+                  <ul class="tb-taglist mr-avg-sm-4">
+                    <li class="tb-taglist-li tb-taglist-li-current">
+                      <div class="comment-info">
+                        <span>全部评价</span
+                        ><span class="tb-tbcr-num">(32)</span>
+                      </div>
+                    </li>
+                    <li class="tb-taglist-li tb-taglist-li-1">
+                      <div class="comment-info">
+                        <span>好评</span><span class="tb-tbcr-num">(32)</span>
+                      </div>
+                    </li>
+                    <li class="tb-taglist-li tb-taglist-li-0">
+                      <div class="comment-info">
+                        <span>中评</span><span class="tb-tbcr-num">(32)</span>
+                      </div>
+                    </li>
+                    <li class="tb-taglist-li tb-taglist-li--1">
+                      <div class="comment-info">
+                        <span>差评</span><span class="tb-tbcr-num">(32)</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="clear"></div>
+                <ul class="mr-comments-list mr-comments-list-flip">
+                  <li class="mr-comment" style="display: block">
+                    <a href="javascript:void(0)"
+                      ><img
+                        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQICAQECAQEBAgICAgICAgICAQICAgICAgICAgL/2wBDAQEBAQEBAQEBAQECAQEBAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgL/wAARCAAoACgDAREAAhEBAxEB/8QAGgAAAwADAQAAAAAAAAAAAAAABwgJAQIFCv/EACsQAAEEAQMDAwQCAwAAAAAAAAMBAgQFBgcREgAIExQhQRUYIzEXMjNCUf/EABsBAAMBAQADAAAAAAAAAAAAAAYHCAQFAAMK/8QAMxEAAgEDAwMBBQgBBQAAAAAAAQIDBAURAAYSBxMhMRQiQVKBCBUyQlFhYnFDFjRyocH/2gAMAwEAAhEDEQA/APTB18y+rw0EdeMxvcKw5lvjd3BqbEFpB9QORHgzZcqtM9wDthQ5qOQj2lIFzlRqrwG7ZW/2Qn2nbaO6XVaW4QSS0zq3lCwCNjILFceMZwCQCcaYfTWw23cF/ahu9vkraSSGTiVaSNElUBlMkkeCoKhlGSByK+D6EYaU90Ndekk0+ozq6hnxheWHkAGHj01sNCIJRGAR5HV1giORytV7hPaiuao9vGnbv+xZ6Nlms3Oup3JBjODInqc+MBlP9cgcA59dGG9ejtVbUhr9qiW500zcZKVir1EBxnkrAIJYj5AIUOpwCG/EWmp7+jyCP6qjt663j+yqavmAlsRF/XJQvXjv8b9AtRSVNI/Cqp3p3/R1Kn/sDSarrZcbZL2bjQy0Mvyyxsh+nIDP011+s+sOgzrjqi3S3D/qEQY5GQXMptRjsYq/i9Y8bzSJ0hv7fGjQxmKrU/u9rB7t58kIds2Q3y4rA5K0sI5ysPXiPAUfuxwo/TyfOMaPenWzjvK/eyTsYrXQIZ6p1/F2wQqxqfg8shVAfyqWfB44Mpr/AFSrMjyZ9JdZpU2mazEfMPW2F3XGyUrWjEYyRql0lTRIA2lYrWCExjRvZ7Izi1KFprM9BbFkorS9PbEwveELCMk+MGXjxyWBHluTEeSTquLZSWa1slrtxgo2gU8aaJkVgg/O0YPN2IILyOGOTknJycdenXb1pgmqcQFvIm6d51VybajMD6i3HL2BZOhuM1SAj28SFJIiBKxjvxnbxI1F2Rdt08u1gkemWK8WuSOnqgeBmiePljwWjZlHlSfxKfB8a4tZR2Hc1JUUVUlPdqYe64DJIYywyCGUlonx5VgVb4jxqtujepQNUcKiX7hDiW8WQapv4I3bsjW0Pj5Hh39/SnA8EgW/ujJKNVVc13U97hs72S5S0fLnCwDxN80bemf5Kcq37jPoRqPd+7Sk2duCa2BzNRTIs9NIRgvBJnAb4c42DRPj1ZOQGGGle71HkDYaZyDkUVYweVoQjke4TJiArCtcrRscqvSGOWvsiuVEXZF6N+miq7XVAR3m7OP+JLA/TkV04/s+qklNu+KNedWxoiB4yU5zKQCSBgyNGPJAzjJ1BjVbA8izjvL7d9QMCoa2ThuLkyCxyzNaqjNDtZM01eGrPVZFblYMhYAoMGudEjmGitfPkOY56E2ZYllv9Dbekm79s3OqUXCaZWpYmbJZZO0cxDz7oZHJxjByT6+Srcuxr5S9X9obiegelpoaKZalgUK+EqBHyaNmVixlQDychQPynFHukRpn6nBoZguQab93HcLmGTUdbg+n19CqqLFj1VGevrL8i2Um5jz3grxk+p2vGXMQ5xjTjyRHo3/Z8b0v1Dufp50+tlLVLV3i2I/fHLLxKidsiQkkjkeOMn3sZHppY9O9i32j371LuNLb3NuuZgliAKRo5ZubMhdkTC5cHz4Z8erav92V+d8DUszXOdAJfUaBfsqMfJbRhUzho5EX/C+Pv7f8RU36jLqTxFXa1/yLE+f65nH/ALjQP9oLtrU7RjIxUrS1HIfEL7Q3HOP5B8fU6YXWrS6PqvhZ6NhxwbuBJFbY5ZkZzZDtYyORozonu6FIA8oDInvwPyTdzW9CO3b09iuUdWFMkDApKmcckPrj+SnDL+4x6E6VvT/eUuyr/HcjEam31KGCrhBwZIXwcr8O5EwWSPPjkuD4J1KDM8fzjTuVKfJw6tdl1OCY+rx/M330fDMlP41aMZpmPWkIk6vI5GqORGktIF/Hnx/IJae2JubbYutBX3Kih3FYmYe0QOTzVWBGfcZJUeMnlxDANj4jB1WNVNTb0sUjbW3S9G1QFKVdKYmqKchgxSWGZJRGxAKskkRyPKEjDaXb7ju4DzpD+zrSf1qkUfNbHV9Ktqou3ldP/lTxen3TfdDKvH436o7746Gce9/pG3mL1/3Vdzx+na73LP7Y+usp6WXP2UyD7Qd1M4GeH3Tb8lvl5ezfTljH00yOEYpnWpE2P6DEa5uU3AoRberxZ14XBMVO4fEowT7+xmEgVgnuLuQ8kkmS5i8UevjGya99bo24LpX19BRw7fsgdvZqaPPMoAAPDs8ru+OR5MwQsfQZ1ohrKLY9hhbde5pKySnVuc9QYhVVTZLBIoIUiVmwQo4RqqjDSMB72qzaRabwtK8Jr8XjnSbN8h7G8tPH43WdzOf5ZknjuqsA3ZggtVVVoY7EVVXdVmK+3eW93KaukXgjYWNM54Rr4Vf7/M36sT8NSPvndlRvPcNVeZYvZqchYqeHOezTxjEaZ+LHy7t8XZiPGBom7/Px+9+uPoQ1MLXXPrfXHJLHBcfNJHh1NIjxwshojTXVlJtQUsCU97EVxvU2RlZDCi8VEJxnsV6tRjx2Zt1bZ92M0Pfvd5dUjXySnIcgir82MBj68iFHj1sHpxtig6d2il3HdYka/XFHZjJ5WnhWFqiVACQF7UKgzvjPcYRqQoPI16f9mXZ5c4FnthqBrblGEZvgc/Jq25xo+RBE4R6174lPIqq2a97r8J3hYRWg3VSyHh4jaxrluLbux+j9dtvcFVuLdL2HcNgeqinpzJCrK0R4QNCjxl6gSEBj22zydkwoUEq7c3Wvrxb917Yp9r7Go9xbZ3HHRzQVIpZXDrKOdQk0sbqlK0YYoDIuAiK+XZiAI+3bU6Xphf0unltNNNwrI2RS0siVxU1aafNkVgJjSu2VkR1pGICQNVVglUZmcEUu8IbvsUF2grrnRrxr7eziQD/KigPkj5u2Qy+hPlTn3dMfqns+Dd9suG6KGnWnv9oLrUImeMyxRrM0ePILrC4kiYAM45I3L3MUu6TepI1//9k="
+                        class="mr-comment-avatar"
+                    /></a>
+                    <div class="mr-comment-main">
+                      <header class="mr-comment-hd">
+                        <div class="mr-comment-meta">
+                          <a href="#link-to-user" class="mr-comment-author"
+                            >b***1 (匿名)</a
+                          >
+                          评论于 <time datetime="">2015年11月02日 17:46</time>
+                        </div>
+                      </header>
+                      <div class="mr-comment-bd">
+                        <div data-id="255776406962" class="tb-rev-item">
+                          <div class="J_TbcRate_ReviewContent tb-tbcr-content">
+                            帮朋友买的，没拆开来看，据说还不错，很满意！
+                          </div>
+                          <div class="tb-r-act-bar">颜色分类：金 电信4G</div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mr-comment" style="display: block">
+                    <a href="javascript:void(0)"
+                      ><img
+                        src="data:image/jpeg;base64,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"
+                        class="mr-comment-avatar"
+                    /></a>
+                    <div class="mr-comment-main">
+                      <header class="mr-comment-hd">
+                        <div class="mr-comment-meta">
+                          <a href="#link-to-user" class="mr-comment-author"
+                            >b***1 (匿名)</a
+                          >
+                          评论于 <time datetime="">2015年11月02日 17:46</time>
+                        </div>
+                      </header>
+                      <div class="mr-comment-bd">
+                        <div data-id="255776406962" class="tb-rev-item">
+                          <div class="J_TbcRate_ReviewContent tb-tbcr-content">
+                            帮朋友买的，没拆开来看，据说还不错，很满意！
+                          </div>
+                          <div class="tb-r-act-bar">颜色分类：金 电信4G</div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mr-comment" style="display: block">
+                    <a href="javascript:void(0)"
+                      ><img
+                        src="data:image/jpeg;base64,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"
+                        class="mr-comment-avatar"
+                    /></a>
+                    <div class="mr-comment-main">
+                      <header class="mr-comment-hd">
+                        <div class="mr-comment-meta">
+                          <a href="#link-to-user" class="mr-comment-author"
+                            >b***1 (匿名)</a
+                          >
+                          评论于 <time datetime="">2015年11月02日 17:46</time>
+                        </div>
+                      </header>
+                      <div class="mr-comment-bd">
+                        <div data-id="255776406962" class="tb-rev-item">
+                          <div class="J_TbcRate_ReviewContent tb-tbcr-content">
+                            帮朋友买的，没拆开来看，据说还不错，很满意！
+                          </div>
+                          <div class="tb-r-act-bar">颜色分类：金 电信4G</div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mr-comment" style="display: none">
+                    <a href="javascript:void(0)"
+                      ><img
+                        src="data:image/jpeg;base64,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"
+                        class="mr-comment-avatar"
+                    /></a>
+                    <div class="mr-comment-main">
+                      <header class="mr-comment-hd">
+                        <div class="mr-comment-meta">
+                          <a href="#link-to-user" class="mr-comment-author"
+                            >b***1 (匿名)</a
+                          >
+                          评论于 <time datetime="">2015年11月02日 17:46</time>
+                        </div>
+                      </header>
+                      <div class="mr-comment-bd">
+                        <div data-id="255776406962" class="tb-rev-item">
+                          <div class="J_TbcRate_ReviewContent tb-tbcr-content">
+                            帮朋友买的，没拆开来看，据说还不错，很满意！
+                          </div>
+                          <div class="tb-r-act-bar">颜色分类：金 电信4G</div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mr-comment" style="display: none">
+                    <a href="javascript:void(0)"
+                      ><img
+                        src="data:image/jpeg;base64,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"
+                        class="mr-comment-avatar"
+                    /></a>
+                    <div class="mr-comment-main">
+                      <header class="mr-comment-hd">
+                        <div class="mr-comment-meta">
+                          <a href="#link-to-user" class="mr-comment-author"
+                            >b***1 (匿名)</a
+                          >
+                          评论于 <time datetime="">2015年11月02日 17:46</time>
+                        </div>
+                      </header>
+                      <div class="mr-comment-bd">
+                        <div data-id="255776406962" class="tb-rev-item">
+                          <div class="J_TbcRate_ReviewContent tb-tbcr-content">
+                            帮朋友买的，没拆开来看，据说还不错，很满意！
+                          </div>
+                          <div class="tb-r-act-bar">颜色分类：金 电信4G</div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="clear"></div>
+                <ul class="mr-pagination mr-pagination-right">
+                  <li class="mr-disabled">
+                    <a href="javascript:void(0)">«</a>
+                  </li>
+                  <li class="mr-active">
+                    <a href="javascript:void(0)">1</a>
+                  </li>
+                  <li class="">
+                    <a href="javascript:void(0)">2</a>
+                  </li>
+                  <li class="">
+                    <a href="javascript:void(0)">»</a>
+                  </li>
+                </ul>
+                <div class="clear"></div>
+                <div class="tb-reviewsft">
+                  <div class="tb-rate-alert type-attention">
+                    购买前请查看该商品的
+                    <a href="javascript:void(0)">购物保障</a
+                    >，明确您的售后保障权益。
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 猜你喜欢 -->
+            <div class="mr-tabs-bd" v-show="currentIndex === 2">
+              <div id="youLike" class="mr-tab-panel">
+                <div class="like">
+                  <ul class="mr-avg-sm-2 mr-avg-md-3 mr-avg-lg-4 boxes">
+                    <li style="display: block">
+                      <div class="i-pic limit">
+                        <img src="images/shopcartImg.jpg" />
+                        <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
+                        <p class="price fl"><b>¥</b><strong>498.00</strong></p>
+                      </div>
+                    </li>
+                    <li style="display: block">
+                      <div class="i-pic limit">
+                        <img src="images/shopcartImg.jpg" />
+                        <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
+                        <p class="price fl"><b>¥</b><strong>498.00</strong></p>
+                      </div>
+                    </li>
+                    <li style="display: block">
+                      <div class="i-pic limit">
+                        <img src="images/shopcartImg.jpg" />
+                        <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
+                        <p class="price fl"><b>¥</b><strong>498.00</strong></p>
+                      </div>
+                    </li>
+                    <li style="display: block">
+                      <div class="i-pic limit">
+                        <img src="images/shopcartImg.jpg" />
+                        <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
+                        <p class="price fl"><b>¥</b><strong>498.00</strong></p>
+                      </div>
+                    </li>
+                    <li style="display: none">
+                      <div class="i-pic limit">
+                        <img src="images/shopcartImg.jpg" />
+                        <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
+                        <p class="price fl"><b>¥</b><strong>498.00</strong></p>
+                      </div>
+                    </li>
+                    <li style="display: none">
+                      <div class="i-pic limit">
+                        <img src="images/shopcartImg.jpg" />
+                        <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
+                        <p class="price fl"><b>¥</b><strong>498.00</strong></p>
+                      </div>
+                    </li>
+                    <li style="display: none">
+                      <div class="i-pic limit">
+                        <img src="images/shopcartImg.jpg" />
+                        <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
+                        <p class="price fl"><b>¥</b><strong>498.00</strong></p>
+                      </div>
+                    </li>
+                    <li style="display: none">
+                      <div class="i-pic limit">
+                        <img src="images/shopcartImg.jpg" />
+                        <p>华为 荣耀 畅玩4X 白色 移动4G手机 双卡双待</p>
+                        <p class="price fl"><b>¥</b><strong>498.00</strong></p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="clear"></div>
+                <ul class="mr-pagination mr-pagination-right">
+                  <li class="mr-disabled">
+                    <a href="javascript:void(0)">«</a>
+                  </li>
+                  <li class="mr-active">
+                    <a href="javascript:void(0)">1</a>
+                  </li>
+                  <li class="">
+                    <a href="javascript:void(0)">2</a>
+                  </li>
+                  <li class="">
+                    <a href="javascript:void(0)">»</a>
+                  </li>
+                </ul>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <!-- 底部 -->
+      <Footer></Footer>
     </div>
   </div>
 </template>
 
 <script>
-import throttle from "lodash/throttle";//引入节流函数
+import throttle from "lodash/throttle"; //引入节流函数
 export default {
-  name: 'ShopInfo',
-  methods:{
+  name: "ShopInfo",
+  data() {
+    return {
+      currentIndex: 0, //当前显示的商品栏目
+      buyCount:1,//购买数量
+    };
+  },
+  methods: {
+    //失去焦点和按下回车的时候触发
+    changCount(event){
+        let newValue = event.target.value;
+        newValue = parseInt(newValue);
+        if(newValue){
+            //为合法的值则修改数据
+            this.buyCount = newValue;
+        }else{
+            event.target.value = this.buyCount;
+        }
+    },
+    //减少数量
+    reduceCount(){
+        this.buyCount--;
+        if(this.buyCount<=0){
+            this.buyCount = 1;
+        }
+    },
+    //增加数量
+    addCount(){
+        this.buyCount++;
+    },
     //鼠标移出,隐藏遮罩层和大图
-    mouseLeaveHiden(){
-        document.querySelector(".tool").style.cssText ="display:none;left:0;top:0";
-        document.querySelector(".bigbox").style.display = "none";
+    mouseLeaveHiden() {
+      document.querySelector(".tool").style.cssText =
+        "display:none;left:0;top:0";
+      document.querySelector(".bigbox").style.display = "none";
     },
     // 鼠标进入,显示遮罩层和大图
-    mouseEnterShow(){
-        document.querySelector(".tool").style.display = "block";
-        document.querySelector(".bigbox").style.display = "block";
+    mouseEnterShow() {
+      document.querySelector(".tool").style.display = "block";
+      document.querySelector(".bigbox").style.display = "block";
     },
     //鼠标移动图片,放大镜
-    mouseMovePic:throttle((event)=>{
-        let enlarge=document.querySelector('.enlarge');
-        let tool=document.querySelector('.tool') ;
-        let bigimg=document.querySelector('.bigimg');
-        event = window.event ||event;//兼容设置
-        //获取图片放大工具到商品图片左端距离
-        let x=event.clientX- enlarge.offsetLeft-tool.offsetWidth/2+document.documentElement.scrollLeft;
-        //获取图片放大工具到商品图片顶端距离
-        let y=event.clientY-enlarge.offsetTop-tool.offsetHeight/2+document.documentElement.scrollTop;
-        if(x<0){
-            //到达边缘
-            x=0;
-        }
-        if(y<0){
-            y=0;//到达边缘
-        }
-        if(x>enlarge.offsetWidth-tool.offsetWidth){
-            x=enlarge.offsetWidth- tool.offsetWidth; //图片放大工具到商品图片左端最大距离
-        }
-        if(y>enlarge.offsetHeight -tool.offsetHeight){
-            y=enlarge.offsetHeight-tool.offsetHeight;//图片放大工具到商品图片顶端最大距离
-        }
-        //设置图片放大工具定位
-        tool.style.left = x+'px';
-        tool.style.top = y+'px';
-        //设置放大图片定位
-        bigimg.style.left = -x * 2+'px';
-        bigimg.style.top = -y * 2+'px';
-    },1000/60),
-  }
-}
+    mouseMovePic: throttle((event) => {
+      let enlarge = document.querySelector(".enlarge");
+      let tool = document.querySelector(".tool");
+      let bigimg = document.querySelector(".bigimg");
+      event = window.event || event; //兼容设置
+      //获取图片放大工具到商品图片左端距离
+      let x =
+        event.clientX -
+        enlarge.offsetLeft -
+        tool.offsetWidth / 2 +
+        document.documentElement.scrollLeft;
+      //获取图片放大工具到商品图片顶端距离
+      let y =
+        event.clientY -
+        enlarge.offsetTop -
+        tool.offsetHeight / 2 +
+        document.documentElement.scrollTop;
+      if (x < 0) {
+        //到达边缘
+        x = 0;
+      }
+      if (y < 0) {
+        y = 0; //到达边缘
+      }
+      if (x > enlarge.offsetWidth - tool.offsetWidth) {
+        x = enlarge.offsetWidth - tool.offsetWidth; //图片放大工具到商品图片左端最大距离
+      }
+      if (y > enlarge.offsetHeight - tool.offsetHeight) {
+        y = enlarge.offsetHeight - tool.offsetHeight; //图片放大工具到商品图片顶端最大距离
+      }
+      //设置图片放大工具定位
+      tool.style.left = x + "px";
+      tool.style.top = y + "px";
+      //设置放大图片定位
+      bigimg.style.left = -x * 2 + "px";
+      bigimg.style.top = -y * 2 + "px";
+    }, 1000 / 60),
+  },
+};
 </script>
 
-<style  scoped>
+<style scoped>
 @import "./css/optstyle.css";
 @import "./css/infoStyle.css";
-.clearfix::after{
-    content: "";
-    display: table;
-    clear: both;
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
 }
-.introduce{
-    padding-bottom: 0;
+.introduce {
+  padding-bottom: 0;
 }
 .enlarge {
-        border: 1px solid #CDCDCD;
-        position: relative;
-        width: 400px;
-        height: 400px;
-    }
-    
-    .tool {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 200px;
-        height: 200px;
-        background: goldenrod;
-        opacity: 0.6;
-        cursor: move;
-    }
-    
-    .bigbox {
-        width: 400px;
-        height: 400px;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
-        left: 410px;
-        z-index: 1;
-        display: none;
-    }
-    
-    .bigbox img {
-        width: 800px;
-        height: 800px;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+  border: 1px solid #cdcdcd;
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.tool {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background: goldenrod;
+  opacity: 0.6;
+  cursor: move;
+}
+
+.bigbox {
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 410px;
+  z-index: 1;
+  display: none;
+}
+
+.bigbox img {
+  width: 800px;
+  height: 800px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 </style>

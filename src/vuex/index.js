@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import {getUserToken,secretPassword,getAllUserList,unLockPassword} from "@/utils/userLoginToken";
+import {getUserCartList} from "@/utils/shopCart";
 // 主页初始化数据
 import indexData from "./data/index";
 Vue.use(Vuex);
@@ -12,6 +13,8 @@ const state = {
     token:getUserToken(),
     //已经注册的用户信息
     registerUserList:getAllUserList(),
+    //购物车数据 - 只有在登录后才有
+    shopCartInfo:getUserCartList(getUserToken()),
 }
 const mutations = {
     LOGINOUT(state){
@@ -66,11 +69,15 @@ const actions = {
     }
 }
 const getters = {
-
+    // 购物车数量
+    cartCount(state){
+        return state.shopCartInfo.length;
+    }
 }
 const store = new Vuex.Store({
     state,mutations,
     actions,getters,
 });
+
 
 export default store;

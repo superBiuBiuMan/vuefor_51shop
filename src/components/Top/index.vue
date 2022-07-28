@@ -12,7 +12,7 @@
 				<ul  class="message-r">
 					<div  class="topMessage home">
 						<div  class="menu-hd">
-							<a  target="_top" class="h" style="color: red;">商城首页</a>
+							<router-link :to="{name:'Home'}" class="h" style="color: red;">商城首页</router-link>
 						</div>
 					</div>
 					<div  class="topMessage my-shangcheng">
@@ -22,7 +22,7 @@
 					</div>
 					<div  class="topMessage mini-cart">
 						<div  class="menu-hd">
-							<a  id="mc-menu-hd" target="_top"><i  class="mr-icon-shopping-cart  mr-icon-fw"></i><span  style="color: red;">购物车</span><strong  id="J_MiniCartNum" class="h">2</strong></a>
+							<router-link :to="{name:'ShopCart'}" id="mc-menu-hd" ><i  class="mr-icon-shopping-cart  mr-icon-fw"></i><span  style="color: red;">购物车</span><strong  id="J_MiniCartNum" class="h">{{cartCount}}</strong></router-link>
 						</div>
 					</div>
 					<div  class="topMessage favorite">
@@ -48,11 +48,12 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState,mapGetters } from "vuex";
 export default {
   name: 'Top',
   computed:{
     ...mapState(["token"]),
+		...mapGetters(["cartCount"]),
   },
   methods:{
 	//登出

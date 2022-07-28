@@ -5,7 +5,7 @@
           <div class="demo">
             <ul>
               <div class="mod-vip">
-                <div class="m-baseinfo">
+                <div class="m-baseinfo" v-if="!!token">
                   <a href="javascript:void(0)"><img src="/images/getAvatar.do.jpg" /></a><em>
                     Hi,<span class="s-name">{{token}}</span><a href="javascript:void(0)"><p>点击更多优惠活动</p></a></em>
                 </div>
