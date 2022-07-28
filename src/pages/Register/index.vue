@@ -87,6 +87,8 @@ export default {
           let regResult = await this.$store.dispatch("userRegister",{phone,password});
           //注册成功
           alert(regResult);
+          // 登录
+          this.$store.dispatch("userLogin",{phone,password});
           //跳转到首页
           this.$router.push({name:"Home"});
        } catch (error) {

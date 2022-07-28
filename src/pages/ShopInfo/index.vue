@@ -793,14 +793,23 @@ export default {
     //添加到购物车
     addToCart(){
         // 添加到购物车
-        this.toCart(this.shopInfo);
-        alert("添加到购物车成功");
-        //跳转到添加购物车成功界面
-        this.$router.push({name:"AddCartSuccess",query:{
-                img:this.shopInfo.img,
-                num:this.shopInfo.num,
-                name:this.shopInfo.name,
-        }});
+        // 判断是否有token
+        let token = localStorage.getItem("51SHOPTOKEN");
+        if(token){
+          this.toCart(this.shopInfo);
+          alert("添加到购物车成功");
+          //跳转到添加购物车成功界面
+          this.$router.push({name:"AddCartSuccess",query:{
+                  img:this.shopInfo.img,
+                  num:this.shopInfo.num,
+                  name:this.shopInfo.name,
+          }});
+        }else{
+          alert("还没有登录,请先登录")
+          //跳转到登录
+          this.$router.push("/login");
+        }
+
     },  
     // 初始化商品信息
     initShopInfo(){

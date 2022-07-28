@@ -66,7 +66,13 @@ export default {
     return {
         phone:"",
         password:"",
+        //来自哪里的url,当登录成功后跳转
+        url:"",
     }
+  },
+  mounted(){
+    //存在就跳转到之前页面,否则跳转到首页
+    this.url = this.$route.query.url ? this.$route.query.url :"/";
   },
   methods:{
      // 登录
@@ -80,16 +86,15 @@ export default {
         if(phone && password){
           try {
             let result = await this.$store.dispatch("userLogin",{phone,password});
-            //不管有没有勾选,都设置为了存储,
-            // await this.$store.dispatch("login",{phone,password});
             alert(result);
-            // this.$router.push({name:"Home"});
+            // 跳转到之前进来的页面
+            this.$router.push(this.url);
           } catch (error) {
               alert(error);
           }
         } 
       }
-    }
+  }
 }
 </script>
 

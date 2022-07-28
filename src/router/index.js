@@ -23,12 +23,24 @@ const router = new Router({
             path:"/login",
             name:"Login",
             component:Login,
+            beforeEnter(to,from,next){
+                // 判断是否已经登录了
+                //获取token
+                let token = localStorage.getItem("51SHOPTOKEN");
+                if(token){
+                    // token存在,跳转到首页
+                    next("/");
+                }else{
+                    //放行
+                    next();
+                }
+            }
         },
         {
             // 注册页
             path:"/register",
             name:"Register",
-            component:Register
+            component:Register,
         },
         {
             // 购物车
@@ -58,7 +70,25 @@ const router = new Router({
     ],
     scrollBehavior(){
         return {x:0,y:0}
+    },
+});
+// 全局前置守卫
+router.beforeEach((to,from,next)=>{
+    //需要token的页面
+    let needToken = ["ShopCart","AddCartSuccess","Pay"];
+    if(needToken.includes(to.name)){
+        //访问了需要token的页面
+        //获取token
+        let token = localStorage.getItem("51SHOPTOKEN");
+        if(token){
+            //token存在 放行
+            next();
+        }else{
+            //跳转到登录
+            next(`/login?url=${to.path}`);
+        }
+    }else{
+        next();
     }
 });
-
 export default router;

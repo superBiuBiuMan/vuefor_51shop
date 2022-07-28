@@ -22,7 +22,9 @@
 					</div>
 					<div  class="topMessage mini-cart">
 						<div  class="menu-hd">
-							<router-link :to="{name:'ShopCart'}" id="mc-menu-hd" ><i  class="mr-icon-shopping-cart  mr-icon-fw"></i><span  style="color: red;">购物车</span><strong  id="J_MiniCartNum" class="h">{{cartCount}}</strong></router-link>
+							<router-link :to="{name:'ShopCart'}" id="mc-menu-hd" ><i  class="mr-icon-shopping-cart  mr-icon-fw"></i>
+							<span  style="color: red;">购物车</span>
+							<strong  id="J_MiniCartNum" class="h" v-if="!!token">{{cartCount}}</strong></router-link>
 						</div>
 					</div>
 					<div  class="topMessage favorite">

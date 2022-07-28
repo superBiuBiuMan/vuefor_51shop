@@ -1,20 +1,16 @@
 <template>
 <div class="banner" style="position: unset;">
-    <div data-mr-flexslider="" id="demo-slider-0" class="mr-slider mr-slider-default scoll">
+    <div data-mr-flexslider="" id="demo-slider-0" class="mr-slider mr-slider-default scoll clearfix" >
         <div id="box">
             <ul id="imagesUI" class="list">
                 <div class="box-content">
-                    <li v-show="currentIndex === 0"><img src="/images/banner1.png"></li>
-                    <li v-show="currentIndex === 1"><img src="/images/banner2.png"></li>
-                    <li v-show="currentIndex === 2"><img src="/images/banner3.png"></li>
-                    <li v-show="currentIndex === 3"><img src="/images/banner4.png"></li>
+                    <li v-for="(item,index) in bannerList" :key="index" v-show="currentIndex === index" >
+                        <img :src="item">
+                    </li>
                 </div>
             </ul>
-            <ul id="btnUI" class="count" style="overflow: hidden;">
-                <li :class="{current:currentIndex===0}"> 1 </li>
-                <li :class="{current:currentIndex===1}"> 2 </li>
-                <li :class="{current:currentIndex===2}"> 3 </li>
-                <li :class="{current:currentIndex===3}"> 4 </li>
+            <ul id="btnUI" class="count" style="overflow: hidden;" >
+                <li :class="{current:currentIndex===index}" v-for="(item,index) in bannerList" :key="index"> {{index+1}} </li>
             </ul>
         </div>
     </div>
@@ -29,6 +25,8 @@ export default {
     return {
         currentIndex:0,//当前轮播图索引
         bannerLength:4,//轮播图数量
+        // 轮播图
+        bannerList:[],//轮播图
     }
   },
   mounted(){
@@ -37,9 +35,17 @@ export default {
   methods:{
     // 轮播图
     initBanner(){
-        setInterval(() => {
-            this.currentIndex = (++this.currentIndex)%this.bannerLength;
-        }, 3000);
+        this.$nextTick(()=>{
+            this.bannerList = [
+                "/images/banner1.png",
+                "/images/banner2.png",
+                "/images/banner3.png",
+                "/images/banner4.png",
+            ];
+        })
+        // setInterval(() => {
+        //     this.currentIndex = (++this.currentIndex)%this.bannerLength;
+        // }, 3000);
     }
   }
 }
@@ -65,6 +71,11 @@ export default {
     border-radius: 5px;
 }
 
+.clearfix::before{
+    content:"";
+    display: table;
+    clear: both;
+}
 #box .list {
     position: relative;
 }
@@ -87,8 +98,6 @@ export default {
         bottom: 5px;
     }
 }
-
-
 
 @media screen and (min-width: 800px) and (max-width: 1450px) {
     #box .list li {
@@ -126,6 +135,7 @@ export default {
         bottom: 10px;
     }
 }
+
 @media screen and (min-width:1024px)  {
     .banner{
         height: 100%;
@@ -135,12 +145,11 @@ export default {
        width: calc(100% - 180px - 220px - 10px - 10px);
        margin: 0 auto;
     }
-    #box .list {
-        /* height: 445px; */
-    }
     #box .list li img {
-        width: 100%;
-        height: 100%;
+        /* width: 100%;
+        height: 100%; */
+        width: 600px;
+        height: 340px;
     }
     #demo-slider-0{
         width: 100%;
@@ -153,6 +162,13 @@ export default {
     #imagesUI{
            width: 100%;
         height: 100%;
+    }
+}
+
+@media screen and (min-width:1280px)  {
+       #box .list li img {
+        width: 780px;
+        height: 438px;
     }
 }
 
