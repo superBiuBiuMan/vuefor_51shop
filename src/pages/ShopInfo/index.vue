@@ -797,11 +797,9 @@ export default {
         alert("添加到购物车成功");
         //跳转到添加购物车成功界面
         this.$router.push({name:"AddCartSuccess",query:{
-            info:{
                 img:this.shopInfo.img,
                 num:this.shopInfo.num,
                 name:this.shopInfo.name,
-            }
         }});
     },  
     // 初始化商品信息
@@ -811,7 +809,7 @@ export default {
             unitPrice:"499.00",
             prevPrice:"599.00",
             canSale:1000,//库存
-            img:"images/01.jpg",
+            img:require("/public/images/01.jpg"),
             num:1,//购买数量
         };
         this.shopInfo = info;

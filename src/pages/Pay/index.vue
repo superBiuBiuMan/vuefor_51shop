@@ -12,7 +12,7 @@
             </div>
             <div class="clear"></div>
             <ul>
-                <div class="per-border"></div>
+                <!-- <div class="per-border"></div> -->
                 <li class="user-addresslist defaultAddr">
                     <div class="address-left">
                         <div class="user DefaultAddr"><span class="buy-address-detail"><span class="buy-user">李丹 </span><span class="buy-phone">1586699****</span></span>
@@ -29,7 +29,7 @@
                         <a href="javascript:void(0);">删除</a>
                     </div>
                 </li>
-                <div class="per-border"></div>
+                <!-- <div class="per-border"></div> -->
                 <li class="user-addresslist">
                     <div class="address-left">
                         <div class="user DefaultAddr"><span class="buy-address-detail"><span class="buy-user">李丹 </span><span class="buy-phone">1586699****</span></span>
@@ -47,6 +47,7 @@
             </ul>
             <div class="clear"></div>
         </div>
+        <!-- 物流方式 -->
         <div class="logistics">
             <h3>选择物流方式</h3>
             <ul class="op_express_delivery_hot">
@@ -57,6 +58,7 @@
                 <li data-value="shunfeng" class="OP_LOG_BTN  op_express_delivery_hot_bottom"><i class="c-gap-right" style="background-position: 0px -180px;"></i>顺丰<span></span></li>
             </ul>
         </div>
+        <!-- 支付方式 -->
         <div class="logistics">
             <h3>选择支付方式</h3>
             <ul class="pay-list">

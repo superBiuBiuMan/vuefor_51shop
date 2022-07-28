@@ -13,7 +13,7 @@
 	</div>
 	<div>
 		<div>
-			<div class="main">
+			<div class="main" ref="preventSelect">
 				<!-- 显示用户购物车数据 -->
 				<div class="goods" v-for="(shopItem,index) in list" :key="index">
 					<!-- 商品选中状态 v-model="checkData"-->
@@ -85,6 +85,8 @@ export default {
 	mounted(){
 		//初始化用户购物车数据
 		this.list = this.shopCartInfo;
+		// 阻止内容可以被选中
+		this.$refs.preventSelect.onselectstart = ()=>false;
 	},
 	computed:{
 		...mapState(["token","shopCartInfo"]),

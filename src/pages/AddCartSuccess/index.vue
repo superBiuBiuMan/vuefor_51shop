@@ -39,7 +39,7 @@ export default {
   },
   
   beforeMount() {
-    this.shopInfo = this.$route.query.info;
+    this.shopInfo = this.$route.query;
   },
 };
 </script>
