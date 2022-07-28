@@ -4,7 +4,7 @@
 				<ul  class="message-l">
 					<div  class="topMessage">
 						<div  class="menu-hd">
-							<span v-if="token" style="color: green;">{{token}}，欢迎您的到来<a  style="color: red;margin-left: 20px;" @click="loginOut">退出登录</a></span>
+							<span v-if="token" style="color: green;">{{token}}，欢迎您的到来<a  style="color: red;cursor:pointer;margin-left: 20px;" @click="loginOut">退出登录</a></span>
 							<router-link v-else :to="{name:'Register'}" style="color: red; margin-left: 20px;">免费注册</router-link>
 						</div>
 					</div>

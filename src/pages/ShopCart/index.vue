@@ -59,7 +59,7 @@
 				<span>已选商品<span class="totalNum">{{selectAmount}}</span> 件</span>
 				<span>合计:<span class="totalPrice">{{totalMoney}}</span>
 				</span>
-				<span>去结算</span>
+				<span @click="$router.push('/pay')">去结算</span>
 			</div>
 		</div>
 	</div>
@@ -72,8 +72,7 @@
 </template>
 
 <script>
-import {storageUserShopCart} from "@/utils/shopCart";
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   name: 'ShopCart',
 	data(){
@@ -117,9 +116,9 @@ export default {
 	},
 	watch: {
 		list:{
+			//发生数据改变
 			handler(){
-				//存储数据
-				storageUserShopCart(this.token,this.list);
+				this.update(this.list);
 			},
 			deep:true,
 		},
@@ -135,6 +134,7 @@ export default {
     },
   },
   methods: {
+		...mapActions(["update"]),
 		//清空购物车
 		clearAllShop(){
 			this.list = [];
@@ -143,12 +143,12 @@ export default {
     //移除商品
     removeItem(removeIndex) {
       this.list.splice(removeIndex, 1);
-      this.checkData = [];
-      this.list.forEach((item,index)=>{
-        if(item.isSelect){
-          this.checkData.push(index);
-        }
-      })
+      // this.checkData = [];
+      // this.list.forEach((item,index)=>{
+      //   if(item.isSelect){
+      //     this.checkData.push(index);
+      //   }
+      // })
     },
     //增加数量
     decrease(changIndex) {

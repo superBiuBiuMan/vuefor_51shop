@@ -89,14 +89,21 @@
                         </div>
                     </div>
                     <div class="clear"></div>
+                    <!-- 商品展示 -->
                     <div class="main">
-                        <div class="goods"><span class="name"><img src="images/oppo.jpg"> OPPO R15 智能手机 全网通 </span><span class="unitPrice">599.00</span><span class="num"> 2 </span><span class="unitTotalPrice">1198.00</span><span class="pay-logis"> 快递送货 </span></div>
-                        <div class="goods"><span class="name"><img src="images/vivo.jpg"> vivo X27 8GB+256GB大内存 </span><span class="unitPrice">699.00</span><span class="num"> 1 </span><span class="unitTotalPrice">699.00</span><span class="pay-logis"> 快递送货 </span></div>
+                        <div class="goods" v-for="(item,index) in userSelect" :key="index">
+                            <span class="name"><img :src="item.img"/>{{item.name}} </span>
+                            <span class="unitPrice">{{item.unitPrice}}</span>
+                            <span class="num"> {{item.num}} </span>
+                            <span class="unitTotalPrice">{{item.unitPrice * item.num}}</span>
+                            <span class="pay-logis"> 快递送货 </span>
+                        </div>
                     </div>
                 </div>
             </div>
             <div>
                 <div class="pay-total">
+                    <!-- 留言 -->
                     <div class="order-extra">
                         <div class="order-user-info">
                             <div id="holyshit257" class="memo"><label>买家留言：</label><input type="text" title="选填,对本次交易的说明（建议填写已经和卖家达成一致的说明）" placeholder="选填,建议填写和卖家达成一致的说明" class="memo-input J_MakePoint c2c-text-default memo-close">
@@ -106,21 +113,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 优惠券部分 -->
                     <div class="buy-agio">
                         <li class="td td-coupon"><span class="coupon-title">优惠券</span>
-                            <select data-mr-selected="">
-                                <option value="8">
+                            <select data-mr-selected="" v-model="disCount">
+                                <option value="0">
+                                     未选择优惠券
+                                </option>
+                                <option value="8" v-if="totalMoney>=95" >
                                     <div class="c-price"><strong>￥8</strong></div>
                                     <div class="c-limit"> 【消费满95元可用】 </div>
                                 </option>
-                                <option value="3" selected="selected">
+                                <option value="3" default>
                                     <div class="c-price"><strong>￥3</strong></div>
                                     <div class="c-limit"> 【无使用门槛】 </div>
                                 </option>
                             </select>
                         </li>
                         <li class="td td-bonus"><span class="bonus-title">红包</span>
-                            <select data-mr-selected="">
+                            <select data-mr-selected="" v-model="redMoney">
+                                <option value="0">
+                                     未选择优惠券
+                                </option>
                                 <option value="10.4">
                                     <div class="item-info"> ¥50.00<span>元</span></div>
                                     <div class="item-remainderprice"><span>还剩</span>10.40<span>元</span></div>
@@ -135,12 +149,14 @@
                     <div class="clear"></div>
                 </div>
                 <div class="buy-point-discharge ">
-                    <p class="price g_price "> 合计（含运费） <span>¥</span><em class="pay-sum">1844.00</em></p>
+                    <!-- 商品总价(未使用优惠券后) -->
+                    <p class="price g_price "> 合计（含运费） <span>¥</span><em class="pay-sum">{{totalMoney + '.00'}}</em></p>
                 </div>
+                <!-- 确认提交订单 -->
                 <div class="order-go clearfix">
                     <div class="pay-confirm clearfix">
                         <div class="box">
-                            <div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em><span class="price g_price "><span>¥</span><em id="J_ActualFee" class="style-large-bold-red ">1844.00</em></span>
+                            <div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em><span class="price g_price "><span>¥</span><em id="J_ActualFee" class="style-large-bold-red ">{{needPay}}</em></span>
                             </div>
                             <div id="holyshit268" class="pay-address">
                                 <p class="buy-footer-address"><span class="buy-line-title buy-line-title-type">寄送至：</span><span class="buy--address-detail"><span class="province">吉林</span>省 <span class="city">长春</span>市 <span class="dist">南关</span>区 <span class="street">卫星广场财富领域5A16室</span></span>
@@ -170,8 +186,35 @@
 </template>
 
 <script>
+import {  mapState } from "vuex";
 export default {
   name: 'Pay',
+  data(){
+    return {
+        // 优惠券
+        disCount:0,
+        //红包
+        redMoney:0,
+    }
+  },
+  computed:{
+    // 用户所有的购物车数据
+    ...mapState(["shopCartInfo"]),
+    // 计算用户选中的数据
+    userSelect(){
+        return this.shopCartInfo.filter(item=>item.isSelect);
+    },
+    // 全部商品总价
+    totalMoney(){
+        return this.shopCartInfo.reduce((prev,item)=>{
+            return prev += (item.num * item.unitPrice)
+        },0)
+    },
+    //需要付款的总价
+    needPay(){
+        return this.totalMoney - this.disCount - this.redMoney;
+    }
+  }
 }
 </script>
 

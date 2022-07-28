@@ -64,13 +64,13 @@
                 @mousemove="mouseMovePic"
               >
                 <!-- 小图 -->
-                <img src="images/01.jpg" title="细节展示放大镜特效" />
+                <img :src="shopInfo.img" title="细节展示放大镜特效" />
                 <!-- style="display: none; left: 0px; top: 198px;" -->
                 <span class="tool"></span>
                 <!-- 大图 -->
                 <div class="bigbox" style="display: none">
                   <img
-                    src="images/01.jpg"
+                    :src="shopInfo.img"
                     class="bigimg"
                     style="left: 0px; top: -396px"
                   />
@@ -107,17 +107,17 @@
           </div>
           <div class="clearfixRight">
             <div class="tb-detail-hd">
-              <h1>华为 荣耀 畅玩4X 白色 移动4G手机</h1>
+              <h1>{{shopInfo.name}}</h1>
             </div>
             <div class="tb-detail-list">
               <div class="tb-detail-price">
                 <li class="price iteminfo_price">
                   <dt>促销价</dt>
-                  <dd><em>¥</em><b class="sys_item_price">499.00</b></dd>
+                  <dd><em>¥</em><b class="sys_item_price">{{shopInfo.unitPrice}}</b></dd>
                 </li>
                 <li class="price iteminfo_mktprice">
                   <dt>原价</dt>
-                  <dd><em>¥</em><b class="sys_item_mktprice">599.00</b></dd>
+                  <dd><em>¥</em><b class="sys_item_mktprice">{{shopInfo.prevPrice}}</b></dd>
                 </li>
                 <div class="clear"></div>
               </div>
@@ -218,7 +218,7 @@
                               <input
                                 id="text_box"
                                 type="text"
-                                :value="buyCount"
+                                :value="shopInfo.num"
                                 @blur="changCount($event)"
                                 @keyup.enter="changCount($event)"
                                 style="width: 30px"
@@ -231,7 +231,7 @@
                                 @click="addCount"
                                 class="mr-btn mr-btn-default"
                               /><span id="Stock" class="tb-hidden"
-                                >库存<span class="stock">1000</span>件</span
+                                >库存<span class="stock">{{shopInfo.canSale}}</span>件</span
                               >
                             </dd>
                           </div>
@@ -283,7 +283,7 @@
                 </div>
               </li>
               <li>
-                <div class="clearfix tb-btn tb-btn-basket theme-login">
+                <div class="clearfix tb-btn tb-btn-basket theme-login" @click="addToCart">
                   <a id="LikBasket" title="加入购物车"><i></i>加入购物车</a>
                 </div>
               </li>
@@ -768,36 +768,75 @@
 
 <script>
 import throttle from "lodash/throttle"; //引入节流函数
+import { mapActions } from 'vuex';
 export default {
   name: "ShopInfo",
   data() {
     return {
       currentIndex: 0, //当前显示的商品栏目
-      buyCount:1,//购买数量
+      shopInfo:{
+        name:"",
+        unitPrice:"",
+        prevPrice:"",
+        canSale:"",//库存
+        img:"",
+        num:"",//购买数量
+      },//当前商品的信息
     };
   },
+  mounted(){
+    //初始化商品信息
+    this.initShopInfo();
+  },
   methods: {
+    ...mapActions(["toCart"]),
+    //添加到购物车
+    addToCart(){
+        // 添加到购物车
+        this.toCart(this.shopInfo);
+        alert("添加到购物车成功");
+        //跳转到添加购物车成功界面
+        this.$router.push({name:"AddCartSuccess",query:{
+            info:{
+                img:this.shopInfo.img,
+                num:this.shopInfo.num,
+                name:this.shopInfo.name,
+            }
+        }});
+    },  
+    // 初始化商品信息
+    initShopInfo(){
+        let info = {
+            name:"华为 荣耀 畅玩4X 白色 移动4G手机",
+            unitPrice:"499.00",
+            prevPrice:"599.00",
+            canSale:1000,//库存
+            img:"images/01.jpg",
+            num:1,//购买数量
+        };
+        this.shopInfo = info;
+    },
     //失去焦点和按下回车的时候触发
     changCount(event){
         let newValue = event.target.value;
         newValue = parseInt(newValue);
         if(newValue){
             //为合法的值则修改数据
-            this.buyCount = newValue;
+            this.shopInfo.num = newValue;
         }else{
-            event.target.value = this.buyCount;
+            event.target.value = this.shopInfo.num;
         }
     },
     //减少数量
     reduceCount(){
-        this.buyCount--;
-        if(this.buyCount<=0){
-            this.buyCount = 1;
+        this.shopInfo.num--;
+        if(this.shopInfo.num<=0){
+            this.shopInfo.num = 1;
         }
     },
     //增加数量
     addCount(){
-        this.buyCount++;
+        this.shopInfo.num++;
     },
     //鼠标移出,隐藏遮罩层和大图
     mouseLeaveHiden() {

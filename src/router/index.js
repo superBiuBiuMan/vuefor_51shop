@@ -8,6 +8,7 @@ const Register = ()=>import("@/pages/Register");
 const ShopCart = ()=>import("@/pages/ShopCart");
 const ShopInfo = ()=>import("@/pages/ShopInfo");
 const Pay = ()=>import("@/pages/Pay");
+const AddCartSuccess = ()=>import("@/pages/AddCartSuccess");
 const router = new Router({
     mode:"history",
     routes:[
@@ -36,6 +37,12 @@ const router = new Router({
             component:ShopCart,
         },
         {
+            //添加到购物车成功页
+            path:"/addcartsuccess",
+            name:"AddCartSuccess",
+            component:AddCartSuccess,
+        },
+        {
             // 商品详情
             path:"/shopinfo",
             name:"ShopInfo",
@@ -46,7 +53,8 @@ const router = new Router({
             path:"/pay",
             name:"Pay",
             component:Pay,
-        }
+        },
+       
     ]
 });
 
