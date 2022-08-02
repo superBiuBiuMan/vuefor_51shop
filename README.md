@@ -8,6 +8,9 @@
 * 下载地址
   * [github](https://github.com/superBiuBiuMan/vuefor_51shop)
   * [gitee](https://gitee.com/superBiuBiu/vuefor_51shop)
+* 在线演示
+  * [@地址](https://vuefor-51shop.vercel.app/)
+
 * 使用
   * 第一步: 当前目录下命令行运行`npm install `
   * 第二步: 当前目录下命名行运行`npm run serve `
