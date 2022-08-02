@@ -43,9 +43,9 @@ export default {
                 "/images/banner4.png",
             ];
         })
-        // setInterval(() => {
-        //     this.currentIndex = (++this.currentIndex)%this.bannerLength;
-        // }, 3000);
+        setInterval(() => {
+            this.currentIndex = (++this.currentIndex)%this.bannerLength;
+        }, 3000);
     }
   }
 }
