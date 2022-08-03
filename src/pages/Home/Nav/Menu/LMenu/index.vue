@@ -41,18 +41,14 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import indexData from "@/assets/data/index"
 export default {
   name: 'LMenu',
   data(){
     return {
+      indexData,
       currentCategory:-1,//目前的所处的分类列表索引
     }
-  }, 
-  computed:{
-    ...mapState({
-      indexData:state=>state.indexData,
-    })
   }, 
   methods:{
     //处理二级分类列表的显示/隐藏

@@ -3,13 +3,9 @@ import Vuex from "vuex";
 import {getUserToken,secretPassword,getAllUserList,unLockPassword} from "@/utils/userLoginToken";
 import {storageUserShopCart} from "@/utils/shopCart"
 import {getUserCartList} from "@/utils/shopCart";
-// 主页初始化数据
-import indexData from "./data/index";
 Vue.use(Vuex);
 
 const state = {
-    // 主页数据
-    indexData,
     //用户登录信息
     token:getUserToken(),
     //已经注册的用户信息
